@@ -1,0 +1,2699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Folkview — Bangladesh Living Heritage</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300&family=Noto+Serif+Bengali:wght@400;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --green-deep: #1a3a2a;
+  --green-mid: #2d5a40;
+  --green-light: #4a7c5f;
+  --terra: #c4622d;
+  --terra-light: #e07a45;
+  --gold: #c8961a;
+  --gold-light: #e8b830;
+  --cream: #f7ede0;
+  --cream-dark: #ede0cc;
+  --red-folk: #8b2335;
+  --ink: #1c1410;
+  --paper: #faf4ec;
+  --white: #ffffff;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Crimson Pro', Georgia, serif;
+  background: var(--paper);
+  color: var(--ink);
+  overflow-x: hidden;
+}
+/* ----- SCROLLBAR ----- */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--cream-dark); }
+::-webkit-scrollbar-thumb { background: var(--terra); border-radius: 3px; }
+
+/* ----- NAV ----- */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  background: rgba(26,58,42,0.97);
+  backdrop-filter: blur(12px);
+  border-bottom: 2px solid var(--gold);
+  padding: 0 2rem;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 64px;
+}
+.nav-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem; font-weight: 900;
+  color: var(--gold-light);
+  letter-spacing: 0.04em;
+  text-decoration: none;
+}
+.nav-logo span { color: var(--terra-light); }
+.nav-links {
+  display: flex; gap: 0; list-style: none;
+  overflow-x: auto; scrollbar-width: none;
+}
+.nav-links::-webkit-scrollbar { display: none; }
+.nav-links a {
+  display: block;
+  padding: 0.4rem 0.75rem;
+  color: var(--cream);
+  text-decoration: none;
+  font-size: 0.78rem;
+  font-family: 'Space Mono', monospace;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: color 0.2s;
+  white-space: nowrap;
+}
+.nav-links a:hover { color: var(--gold-light); }
+.nav-btn {
+  background: var(--terra);
+  color: white; border: none; cursor: pointer;
+  padding: 0.4rem 1rem;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+.nav-btn:hover { background: var(--terra-light); }
+
+/* ----- HERO ----- */
+.hero {
+  min-height: 100vh;
+  background: var(--green-deep);
+  position: relative;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+  padding-top: 64px;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 50%, rgba(200,150,26,0.12) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 80% at 80% 30%, rgba(196,98,45,0.1) 0%, transparent 60%),
+    repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(255,255,255,0.015) 40px, rgba(255,255,255,0.015) 41px);
+}
+.hero-motif {
+  position: absolute; inset: 0;
+  background-image:
+    radial-gradient(circle at 10% 90%, rgba(196,98,45,0.2) 0%, transparent 30%),
+    radial-gradient(circle at 90% 10%, rgba(74,124,95,0.3) 0%, transparent 30%);
+}
+/* Kantha-stitch SVG border */
+.hero-border {
+  position: absolute; top: 80px; left: 20px; right: 20px; bottom: 20px;
+  border: 1px dashed rgba(200,150,26,0.3);
+  pointer-events: none;
+}
+.hero-content {
+  position: relative; z-index: 2;
+  text-align: center;
+  padding: 3rem 2rem;
+  max-width: 900px;
+}
+.hero-tag {
+  display: inline-block;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  border: 1px solid var(--gold);
+  padding: 0.3rem 1rem;
+  margin-bottom: 2rem;
+  animation: fadeUp 0.8s ease both;
+}
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(3rem, 8vw, 6.5rem);
+  font-weight: 900;
+  color: var(--cream);
+  line-height: 1;
+  margin-bottom: 0.3rem;
+  animation: fadeUp 0.8s 0.1s ease both;
+}
+.hero-title .accent { color: var(--gold-light); font-style: italic; }
+.hero-subtitle-bn {
+  font-family: 'Noto Serif Bengali', serif;
+  font-size: clamp(1rem, 3vw, 1.5rem);
+  color: rgba(247,237,224,0.7);
+  margin-bottom: 1.5rem;
+  animation: fadeUp 0.8s 0.2s ease both;
+}
+.hero-desc {
+  font-size: 1.15rem;
+  color: rgba(247,237,224,0.75);
+  max-width: 600px;
+  margin: 0 auto 2.5rem;
+  line-height: 1.7;
+  animation: fadeUp 0.8s 0.3s ease both;
+}
+.hero-actions {
+  display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+  animation: fadeUp 0.8s 0.4s ease both;
+}
+.btn-primary {
+  background: var(--terra);
+  color: white;
+  padding: 0.85rem 2rem;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: none; cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.25s;
+}
+.btn-primary:hover { background: var(--terra-light); transform: translateY(-2px); }
+.btn-outline {
+  border: 1.5px solid var(--gold);
+  color: var(--gold-light);
+  padding: 0.85rem 2rem;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: transparent;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.25s;
+}
+.btn-outline:hover { background: var(--gold); color: var(--green-deep); transform: translateY(-2px); }
+.hero-stats {
+  position: absolute; bottom: 2.5rem; left: 0; right: 0;
+  display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap;
+  animation: fadeUp 0.8s 0.5s ease both;
+}
+.stat { text-align: center; }
+.stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--gold-light);
+  display: block;
+}
+.stat-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(247,237,224,0.5);
+}
+/* Decorative circles */
+.deco-circle {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(200,150,26,0.15);
+  animation: rotateSlow 30s linear infinite;
+}
+.dc1 { width: 400px; height: 400px; top: -100px; right: -100px; }
+.dc2 { width: 250px; height: 250px; bottom: 80px; left: 5%; animation-direction: reverse; }
+.dc3 { width: 150px; height: 150px; top: 30%; right: 15%; animation-duration: 20s; }
+
+/* ----- SECTION BASE ----- */
+section { padding: 6rem 2rem; }
+.container { max-width: 1100px; margin: 0 auto; }
+.section-tag {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--terra);
+  margin-bottom: 0.75rem;
+  display: flex; align-items: center; gap: 0.5rem;
+}
+.section-tag::before {
+  content: '';
+  display: inline-block;
+  width: 24px; height: 2px;
+  background: var(--terra);
+}
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 900;
+  color: var(--green-deep);
+  line-height: 1.1;
+  margin-bottom: 1rem;
+}
+.section-title em { color: var(--terra); font-style: italic; }
+.section-intro {
+  font-size: 1.1rem;
+  color: #4a3728;
+  line-height: 1.75;
+  max-width: 680px;
+  margin-bottom: 3rem;
+}
+.divider {
+  width: 60px; height: 3px;
+  background: linear-gradient(90deg, var(--terra), var(--gold));
+  margin-bottom: 1.5rem;
+}
+
+/* ----- SECTION 0: MISSION & VISION ----- */
+.mission-section {
+  background: var(--green-deep);
+  color: var(--cream);
+  position: relative;
+  overflow: hidden;
+}
+.mission-section::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(
+    -45deg, transparent, transparent 20px,
+    rgba(200,150,26,0.04) 20px, rgba(200,150,26,0.04) 21px
+  );
+}
+.mission-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  position: relative; z-index: 1;
+}
+.mission-card {
+  border: 1px solid rgba(200,150,26,0.3);
+  padding: 2.5rem;
+  position: relative;
+}
+.mission-card::before {
+  content: '';
+  position: absolute;
+  top: -2px; left: 2rem; right: 2rem; height: 2px;
+  background: linear-gradient(90deg, var(--gold), transparent);
+}
+.mission-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  color: var(--gold-light);
+  margin-bottom: 1rem;
+}
+.mission-card p {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: rgba(247,237,224,0.8);
+}
+.mission-card .bn-text {
+  font-family: 'Noto Serif Bengali', serif;
+  font-size: 1rem;
+  line-height: 1.9;
+  color: rgba(247,237,224,0.75);
+}
+
+/* ----- SECTION 1: FOLKLORE ----- */
+.folklore-section { background: var(--paper); }
+.folklore-tabs {
+  display: flex; gap: 0; border-bottom: 2px solid var(--cream-dark);
+  margin-bottom: 2.5rem; flex-wrap: wrap;
+}
+.tab-btn {
+  padding: 0.75rem 1.4rem;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: none;
+  border: none; cursor: pointer;
+  color: #6b5040;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -2px;
+  transition: all 0.2s;
+}
+.tab-btn.active {
+  color: var(--terra);
+  border-bottom-color: var(--terra);
+}
+.tab-btn:hover { color: var(--terra); }
+.tab-panel { display: none; }
+.tab-panel.active { display: block; animation: fadeIn 0.3s ease; }
+.folklore-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+.folk-card {
+  background: var(--cream);
+  border-left: 4px solid var(--terra);
+  padding: 1.8rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.folk-card:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0,0,0,0.08); }
+.folk-card-icon { font-size: 2rem; margin-bottom: 1rem; }
+.folk-card h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  color: var(--green-deep);
+  margin-bottom: 0.6rem;
+}
+.folk-card p { font-size: 0.95rem; color: #4a3728; line-height: 1.7; }
+.timeline {
+  position: relative;
+  padding-left: 2rem;
+}
+.timeline::before {
+  content: '';
+  position: absolute; left: 8px; top: 0; bottom: 0;
+  width: 2px; background: linear-gradient(180deg, var(--terra), var(--gold));
+}
+.timeline-item {
+  position: relative;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--cream-dark);
+}
+.timeline-item::before {
+  content: '';
+  position: absolute; left: -1.85rem; top: 6px;
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  background: var(--terra);
+  border: 2px solid var(--paper);
+}
+.timeline-item h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  color: var(--green-deep);
+  margin-bottom: 0.3rem;
+}
+.timeline-era {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--terra);
+  margin-bottom: 0.4rem;
+  display: block;
+}
+.timeline-item p { font-size: 0.93rem; color: #4a3728; line-height: 1.65; }
+
+/* ----- SECTION 2: DIGITAL ARCHIVE ----- */
+.archive-section { background: var(--green-deep); color: var(--cream); }
+.archive-section .section-title { color: var(--gold-light); }
+.archive-section .section-intro { color: rgba(247,237,224,0.75); }
+.archive-section .section-tag { color: var(--terra-light); }
+.archive-section .section-tag::before { background: var(--terra-light); }
+.archive-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5px;
+  margin-bottom: 3rem;
+}
+.archive-item {
+  background: rgba(255,255,255,0.04);
+  padding: 2rem 1.5rem;
+  border: 1px solid rgba(200,150,26,0.15);
+  transition: all 0.25s;
+  cursor: pointer;
+  text-align: center;
+}
+.archive-item:hover {
+  background: rgba(196,98,45,0.15);
+  border-color: var(--terra);
+  transform: scale(1.02);
+}
+.archive-item-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+.archive-item h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  color: var(--gold-light);
+  margin-bottom: 0.5rem;
+}
+.archive-item p { font-size: 0.88rem; color: rgba(247,237,224,0.65); line-height: 1.6; }
+.archive-type-tags {
+  display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 2rem;
+}
+.a-tag {
+  border: 1px solid rgba(200,150,26,0.4);
+  color: var(--gold-light);
+  padding: 0.35rem 0.9rem;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.a-tag:hover { background: var(--gold); color: var(--green-deep); }
+
+/* ----- SECTION 3: FOLK COMMUNITY ----- */
+.community-section { background: var(--cream); }
+.districts-intro {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 3rem;
+  margin-bottom: 3rem;
+  align-items: start;
+}
+.districts-left h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 4rem;
+  font-weight: 900;
+  color: var(--terra);
+  line-height: 1;
+}
+.districts-left p {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #6b5040;
+}
+.division-tabs {
+  display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 2rem;
+}
+.div-btn {
+  padding: 0.4rem 0.9rem;
+  background: white;
+  border: 1.5px solid var(--cream-dark);
+  color: #4a3728;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: 'Crimson Pro', serif;
+}
+.div-btn.active, .div-btn:hover {
+  background: var(--green-deep);
+  color: var(--gold-light);
+  border-color: var(--green-deep);
+}
+.districts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 0.5rem;
+  max-height: 400px;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+}
+.district-chip {
+  background: white;
+  border: 1px solid var(--cream-dark);
+  padding: 0.5rem 0.75rem;
+  font-size: 0.82rem;
+  color: var(--green-deep);
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: center;
+  border-left: 3px solid transparent;
+}
+.district-chip:hover {
+  border-left-color: var(--terra);
+  background: var(--cream);
+  color: var(--terra);
+}
+.community-types {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+.comm-type {
+  padding: 2rem;
+  background: white;
+  border-top: 3px solid var(--terra);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+}
+.comm-type .icon { font-size: 1.8rem; margin-bottom: 0.8rem; }
+.comm-type h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  color: var(--green-deep);
+  margin-bottom: 0.5rem;
+}
+.comm-type p { font-size: 0.88rem; color: #5a4030; line-height: 1.6; }
+
+/* ----- SECTION 4: SDGs ----- */
+.sdg-section { background: var(--paper); }
+.sdg-intro-grid {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 3rem;
+  margin-bottom: 3rem;
+}
+.sdg-goals {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1rem;
+}
+.sdg-card {
+  padding: 1.5rem;
+  border-radius: 0;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+.sdg-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 3px;
+  background: rgba(255,255,255,0.4);
+}
+.sdg-card:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0,0,0,0.15); }
+.sdg-card .num {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: rgba(255,255,255,0.9);
+  line-height: 1;
+  margin-bottom: 0.3rem;
+}
+.sdg-card .goal-title {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: rgba(255,255,255,0.85);
+}
+.sdg-challenges {
+  background: var(--green-deep);
+  color: var(--cream);
+  padding: 2.5rem;
+  margin-top: 3rem;
+}
+.sdg-challenges h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  color: var(--gold-light);
+  margin-bottom: 1.5rem;
+}
+.challenges-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+.challenge-item {
+  display: flex;
+  gap: 0.8rem;
+  align-items: flex-start;
+}
+.challenge-icon { font-size: 1.2rem; flex-shrink: 0; }
+.challenge-item p { font-size: 0.93rem; line-height: 1.6; color: rgba(247,237,224,0.8); }
+
+/* ----- SECTION 5: PUBLIC HEALTH ----- */
+.health-section { background: #fff8f0; }
+.health-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+.folk-medicine-list { list-style: none; }
+.folk-medicine-list li {
+  display: flex; gap: 1rem; align-items: flex-start;
+  padding: 1.2rem 0;
+  border-bottom: 1px solid var(--cream-dark);
+}
+.folk-medicine-list .icon { font-size: 1.5rem; flex-shrink: 0; }
+.folk-medicine-list h5 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  color: var(--green-deep);
+  margin-bottom: 0.25rem;
+}
+.folk-medicine-list p { font-size: 0.88rem; color: #5a4030; line-height: 1.6; }
+.disease-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+.disease-card {
+  background: white;
+  border: 1px solid var(--cream-dark);
+  padding: 1.2rem;
+  border-top: 3px solid var(--green-mid);
+}
+.disease-card h5 {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.95rem;
+  color: var(--green-deep);
+  margin-bottom: 0.4rem;
+}
+.disease-card p { font-size: 0.82rem; color: #5a4030; line-height: 1.55; }
+.health-timeline {
+  margin-top: 3rem;
+  padding: 2rem;
+  background: var(--green-deep);
+  color: var(--cream);
+}
+.health-timeline h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  color: var(--gold-light);
+  margin-bottom: 1.5rem;
+}
+
+/* ----- SECTION 6: WOMEN EMPOWERMENT ----- */
+.women-section { background: var(--cream); }
+.women-hero {
+  background: linear-gradient(135deg, var(--red-folk) 0%, #5a1020 100%);
+  padding: 3rem;
+  color: white;
+  margin-bottom: 3rem;
+  position: relative;
+  overflow: hidden;
+}
+.women-hero::after {
+  content: '🧵';
+  position: absolute;
+  right: 2rem; top: 50%;
+  transform: translateY(-50%);
+  font-size: 10rem;
+  color: rgba(255,255,255,0.05);
+  font-family: 'Noto Serif Bengali', serif;
+}
+.women-hero h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  margin-bottom: 0.8rem;
+}
+.women-hero p { font-size: 1.05rem; opacity: 0.85; max-width: 600px; line-height: 1.7; }
+.artifacts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+.artifact-card {
+  background: white;
+  border: 1px solid var(--cream-dark);
+  overflow: hidden;
+  transition: transform 0.25s;
+}
+.artifact-card:hover { transform: translateY(-4px); }
+.artifact-visual {
+  height: 120px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 3rem;
+  position: relative;
+}
+.artifact-body { padding: 1.2rem; }
+.artifact-body h5 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  color: var(--green-deep);
+  margin-bottom: 0.3rem;
+}
+.artifact-body p { font-size: 0.82rem; color: #5a4030; line-height: 1.6; }
+.artifact-body .origin {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--terra);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-top: 0.5rem;
+}
+
+/* ----- SECTION 7: SOCIAL DEVELOPMENT ----- */
+.social-section { background: var(--paper); }
+.research-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 3rem;
+}
+.research-list { list-style: none; }
+.research-list li {
+  padding: 1.5rem;
+  border: 1px solid var(--cream-dark);
+  margin-bottom: 1rem;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+.research-list li:hover {
+  border-left: 4px solid var(--terra);
+  padding-left: calc(1.5rem - 3px);
+  background: var(--cream);
+}
+.research-list .year {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--terra);
+  margin-bottom: 0.3rem;
+}
+.research-list h5 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  color: var(--green-deep);
+  margin-bottom: 0.3rem;
+}
+.research-list p { font-size: 0.85rem; color: #5a4030; line-height: 1.6; }
+.future-directions {
+  background: var(--green-deep);
+  color: var(--cream);
+  padding: 2rem;
+}
+.future-directions h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  color: var(--gold-light);
+  margin-bottom: 1.2rem;
+}
+.future-item {
+  display: flex; gap: 0.7rem; align-items: flex-start;
+  margin-bottom: 1rem;
+}
+.future-item .num {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--gold);
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+.future-item p { font-size: 0.88rem; line-height: 1.6; color: rgba(247,237,224,0.8); }
+
+/* ----- SECTION 8: SUPPORT ARTISANS ----- */
+.artisan-section { background: #fff8f0; }
+.barriers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+.barrier-card {
+  padding: 2rem;
+  border: 1px solid var(--cream-dark);
+  position: relative;
+  background: white;
+}
+.barrier-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 3px;
+  background: var(--terra);
+}
+.barrier-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem;
+  font-weight: 900;
+  color: rgba(196,98,45,0.15);
+  position: absolute;
+  top: 0.5rem; right: 1rem;
+}
+.barrier-card h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.05rem;
+  color: var(--green-deep);
+  margin-bottom: 0.6rem;
+  position: relative; z-index: 1;
+}
+.barrier-card p { font-size: 0.88rem; color: #5a4030; line-height: 1.65; }
+.support-cta {
+  background: var(--terra);
+  color: white;
+  padding: 3rem;
+  text-align: center;
+}
+.support-cta h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  margin-bottom: 0.8rem;
+}
+.support-cta p { font-size: 1rem; opacity: 0.9; margin-bottom: 1.5rem; }
+
+/* ----- SECTION 9: INTERNATIONAL ----- */
+.intl-section { background: var(--green-deep); color: var(--cream); }
+.intl-section .section-title { color: var(--gold-light); }
+.intl-section .section-intro { color: rgba(247,237,224,0.75); }
+.intl-section .section-tag { color: var(--terra-light); }
+.intl-section .section-tag::before { background: var(--terra-light); }
+.cultures-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1px;
+  border: 1px solid rgba(200,150,26,0.2);
+}
+.culture-card {
+  padding: 2rem 1.5rem;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(200,150,26,0.1);
+  transition: all 0.25s;
+  cursor: pointer;
+}
+.culture-card:hover {
+  background: rgba(196,98,45,0.15);
+  border-color: var(--terra);
+}
+.culture-flag { font-size: 2.5rem; margin-bottom: 0.75rem; }
+.culture-card h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.05rem;
+  color: var(--gold-light);
+  margin-bottom: 0.4rem;
+}
+.culture-card p { font-size: 0.83rem; color: rgba(247,237,224,0.65); line-height: 1.6; }
+.culture-tag {
+  display: inline-block;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--terra-light);
+  border: 1px solid rgba(196,98,45,0.4);
+  padding: 0.15rem 0.4rem;
+  margin-top: 0.5rem;
+}
+.pop-culture-bar {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(200,150,26,0.2);
+  padding: 2rem;
+  margin-top: 3rem;
+}
+.pop-culture-bar h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  color: var(--gold-light);
+  margin-bottom: 1rem;
+}
+.pop-items { display: flex; flex-wrap: wrap; gap: 1rem; }
+.pop-item {
+  background: rgba(255,255,255,0.06);
+  padding: 0.8rem 1.2rem;
+  font-size: 0.88rem;
+  color: rgba(247,237,224,0.8);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.pop-item:hover { background: rgba(196,98,45,0.2); }
+
+/* ----- SECTION 10: PROJECTS ----- */
+.projects-section { background: var(--paper); }
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+.project-card {
+  background: white;
+  border: 1px solid var(--cream-dark);
+  overflow: hidden;
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+.project-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+}
+.project-header {
+  padding: 2rem;
+  position: relative;
+}
+.project-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 0.5rem;
+  font-style: italic;
+}
+.project-card h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  color: white;
+  margin-bottom: 0.5rem;
+}
+.project-body { padding: 1.5rem 2rem 2rem; }
+.project-body p { font-size: 0.92rem; color: #4a3728; line-height: 1.7; margin-bottom: 1rem; }
+.project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.ptag {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.5rem;
+  background: var(--cream);
+  color: var(--terra);
+  border: 1px solid var(--cream-dark);
+}
+.project-status {
+  display: flex; align-items: center; gap: 0.4rem;
+  margin-top: 1rem;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--green-mid);
+}
+.status-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green-mid); animation: pulse 2s infinite; }
+
+/* ----- HERITAGE MAP ----- */
+.map-section {
+  background: var(--ink);
+  color: var(--cream);
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+}
+.map-header {
+  padding: 4rem 2rem 2rem;
+  text-align: center;
+  position: relative; z-index: 2;
+  background: linear-gradient(180deg, rgba(26,20,16,0.95) 60%, transparent);
+}
+.map-header .section-title { color: var(--gold-light); }
+.map-header .section-intro { color: rgba(247,237,224,0.75); margin: 0 auto; }
+.map-container {
+  width: 100%;
+  height: 600px;
+  background: var(--green-deep);
+  position: relative;
+  overflow: hidden;
+}
+/* SVG Bangladesh Map */
+.bd-map-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 2rem;
+  gap: 3rem;
+}
+.bd-map-svg {
+  flex-shrink: 0;
+  filter: drop-shadow(0 0 40px rgba(200,150,26,0.2));
+}
+.map-legend {
+  color: var(--cream);
+  max-width: 300px;
+}
+.map-legend h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  color: var(--gold-light);
+  margin-bottom: 1.5rem;
+}
+.legend-item {
+  display: flex; gap: 0.8rem; align-items: center;
+  margin-bottom: 1rem;
+}
+.legend-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
+.legend-item p { font-size: 0.88rem; color: rgba(247,237,224,0.8); }
+.heritage-points {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.h-point {
+  position: absolute;
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: pointPulse 3s ease-in-out infinite;
+  cursor: pointer;
+  pointer-events: all;
+}
+.h-point::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 1px solid currentColor;
+  opacity: 0.4;
+  animation: ringExpand 3s ease-in-out infinite;
+}
+.map-info-panel {
+  position: absolute;
+  bottom: 2rem; left: 2rem;
+  background: rgba(26,20,16,0.9);
+  border: 1px solid var(--gold);
+  padding: 1.5rem;
+  max-width: 260px;
+}
+.map-info-panel h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  color: var(--gold-light);
+  margin-bottom: 0.4rem;
+}
+.map-info-panel p { font-size: 0.83rem; color: rgba(247,237,224,0.8); }
+.map-controls {
+  position: absolute;
+  top: 1rem; right: 1rem;
+  display: flex; flex-direction: column; gap: 0.4rem;
+}
+.map-ctrl-btn {
+  width: 36px; height: 36px;
+  background: rgba(26,20,16,0.85);
+  border: 1px solid rgba(200,150,26,0.4);
+  color: var(--gold-light);
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.2s;
+}
+.map-ctrl-btn:hover { background: var(--terra); }
+.map-footer {
+  padding: 2rem;
+  background: var(--ink);
+  display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;
+}
+.map-filter-btn {
+  padding: 0.5rem 1.2rem;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: transparent;
+  border: 1px solid rgba(200,150,26,0.3);
+  color: rgba(247,237,224,0.7);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.map-filter-btn.active, .map-filter-btn:hover {
+  background: var(--terra);
+  border-color: var(--terra);
+  color: white;
+}
+
+/* ----- TEAM ----- */
+.team-section { background: var(--cream); }
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+}
+.team-card {
+  background: white;
+  border: 1px solid var(--cream-dark);
+  overflow: hidden;
+  transition: transform 0.25s;
+}
+.team-card:hover { transform: translateY(-4px); }
+.team-card-header {
+  padding: 2rem;
+  text-align: center;
+  position: relative;
+}
+.team-avatar {
+  width: 80px; height: 80px;
+  border-radius: 50%;
+  margin: 0 auto 1rem;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 2rem;
+  border: 3px solid var(--cream-dark);
+}
+.team-card h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.05rem;
+  color: var(--green-deep);
+  margin-bottom: 0.2rem;
+}
+.team-role {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--terra);
+  margin-bottom: 0.8rem;
+}
+.team-duties { padding: 0 1.5rem 1.5rem; }
+.team-duties ul {
+  list-style: none;
+}
+.team-duties ul li {
+  font-size: 0.82rem;
+  color: #5a4030;
+  padding: 0.3rem 0;
+  border-bottom: 1px dashed var(--cream-dark);
+  display: flex; gap: 0.4rem; align-items: flex-start;
+}
+.team-duties ul li::before {
+  content: '—';
+  color: var(--terra);
+  flex-shrink: 0;
+}
+
+/* ----- FOOTER ----- */
+footer {
+  background: var(--ink);
+  color: var(--cream);
+  padding: 4rem 2rem 2rem;
+}
+.footer-grid {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 3rem;
+  padding-bottom: 3rem;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  margin-bottom: 2rem;
+}
+.footer-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--gold-light);
+  margin-bottom: 1rem;
+}
+.footer-logo span { color: var(--terra-light); }
+.footer-desc { font-size: 0.9rem; color: rgba(247,237,224,0.6); line-height: 1.7; margin-bottom: 1.5rem; }
+.footer-desc .bn { font-family: 'Noto Serif Bengali', serif; font-size: 0.85rem; }
+.footer-col h5 {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1rem;
+}
+.footer-col ul { list-style: none; }
+.footer-col ul li {
+  margin-bottom: 0.5rem;
+}
+.footer-col ul li a {
+  color: rgba(247,237,224,0.6);
+  text-decoration: none;
+  font-size: 0.88rem;
+  transition: color 0.2s;
+}
+.footer-col ul li a:hover { color: var(--gold-light); }
+.footer-bottom {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.footer-bottom p { font-size: 0.8rem; color: rgba(247,237,224,0.4); }
+.footer-bottom .dept {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--terra-light);
+}
+
+/* ----- ANIMATIONS ----- */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes rotateSlow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.5); }
+}
+@keyframes pointPulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); }
+  50% { transform: translate(-50%, -50%) scale(1.4); }
+}
+@keyframes ringExpand {
+  0% { transform: scale(1); opacity: 0.4; }
+  100% { transform: scale(2.5); opacity: 0; }
+}
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.fade-in-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ----- RESPONSIVE ----- */
+@media (max-width: 768px) {
+  .mission-grid, .health-grid, .research-grid, .sdg-intro-grid,
+  .districts-intro, .archive-grid, .challenges-grid, .footer-grid {
+    grid-template-columns: 1fr;
+  }
+  .archive-grid { grid-template-columns: 1fr 1fr; }
+  nav { gap: 0.5rem; }
+  .nav-links { display: none; }
+  .hero-title { font-size: 3rem; }
+  .hero-stats { gap: 1.5rem; }
+  .bd-map-wrapper { flex-direction: column; height: auto; padding: 1rem; }
+  .map-legend { max-width: 100%; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+/* ===== FINAL VERSION ADDITIONS ===== */
+nav{padding:0 1.5rem}
+.nv{display:flex;align-items:center;gap:.2rem;list-style:none}
+.nv>li>a,.dd-btn{display:block;padding:.5rem .85rem;color:var(--cream);text-decoration:none;font:.76rem 'Space Mono',monospace;letter-spacing:.05em;text-transform:uppercase;background:none;border:0;border-bottom:2px solid transparent;cursor:pointer;transition:.2s}
+.nv>li>a:hover,.nv>li>a.on,.dd-btn:hover,.dd-btn.on,.dd.open .dd-btn{color:var(--gold-light);border-color:var(--gold-light)}
+.dd{position:relative}
+.dd-btn i{font-size:.65rem;margin-left:.35rem;transition:.2s}.dd.open .dd-btn i{transform:rotate(180deg)}
+.dd-panel{position:absolute;top:calc(100% + 12px);left:50%;transform:translateX(-50%) translateY(-8px);width:330px;max-height:min(70vh,460px);overflow-y:auto;background:var(--green-deep);border:1px solid var(--gold);border-radius:10px;box-shadow:0 20px 40px rgba(0,0,0,.45);padding:.5rem;opacity:0;visibility:hidden;transition:.2s;scrollbar-width:thin;scrollbar-color:var(--terra) transparent}
+.dd.open .dd-panel{opacity:1;visibility:visible;transform:translateX(-50%)}
+.dd-panel a{display:flex;align-items:center;gap:.8rem;padding:.65rem .8rem;color:var(--cream);text-decoration:none;border-radius:6px;font-size:1rem;transition:.2s}
+.dd-panel a span{width:1.6rem;text-align:center;font-size:1.1rem}
+.dd-panel a small{display:block;font:.62rem 'Space Mono',monospace;color:rgba(247,237,224,.55);text-transform:uppercase;letter-spacing:.06em}
+.dd-panel a:hover,.dd-panel a.on{background:rgba(200,150,26,.18);color:var(--gold-light)}
+#nvb{display:none;background:none;border:0;color:var(--cream);font-size:1.5rem;cursor:pointer}
+#prog{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--terra),var(--gold-light));z-index:2000}
+#totop{position:fixed;right:1.2rem;bottom:1.2rem;width:44px;height:44px;border-radius:50%;background:var(--terra);color:#fff;border:0;cursor:pointer;opacity:0;pointer-events:none;transition:.3s;z-index:900}#totop.v{opacity:1;pointer-events:auto}
+/* About */
+.about-final{background:#f0f4f8}
+.ab-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+.ab-card{background:#fff;border-radius:18px;box-shadow:0 10px 30px rgba(0,0,0,.07);padding:2.5rem 2rem;text-align:center;position:relative;border-top:5px solid var(--terra);transition:.3s}
+.ab-card.adv{border-top-color:var(--green-deep)}.ab-card:hover{transform:translateY(-6px)}
+.ab-photo{width:210px;height:210px;border-radius:50%;object-fit:cover;border:6px solid var(--gold);box-shadow:0 10px 25px rgba(0,0,0,.18);display:block;margin:0 auto 1.4rem;background:#fff}
+.ab-badge{display:inline-block;background:var(--red-folk);color:#fff;padding:.3rem 1rem;font:.68rem 'Space Mono',monospace;text-transform:uppercase;letter-spacing:.08em;border-radius:20px;margin-bottom:.9rem}.adv .ab-badge{background:var(--green-deep)}
+.ab-card h3{font:900 1.8rem 'Playfair Display',serif;color:var(--green-deep)}
+.ab-role{color:var(--terra);font:.8rem 'Space Mono',monospace;text-transform:uppercase;letter-spacing:.05em;margin:.4rem 0 .5rem}
+.ab-inst{color:#666;font-size:1rem;margin-bottom:1.2rem}
+.ab-q{background:#f8f9fa;border-left:4px solid var(--green-mid);padding:1.1rem 1.3rem;border-radius:0 8px 8px 0;font-family:'Noto Serif Bengali',serif;line-height:1.8;font-size:1rem;text-align:left;margin-bottom:1.2rem}.adv .ab-q{border-left-color:var(--gold)}
+.ab-chips{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center}.ab-chips span{font-size:.85rem;background:var(--cream-dark);padding:.3rem .8rem;border-radius:20px;color:var(--green-deep)}
+/* Leaflet heritage map */
+.hm{background:var(--ink);color:var(--cream);padding:0}
+.hm-h{padding:4rem 1.5rem 1.5rem;text-align:center}.hm-h .section-tag{justify-content:center;color:var(--terra-light)}
+.hm-h .section-title{color:var(--gold-light)}.hm-h .section-intro{margin:0 auto 1.5rem;color:rgba(247,237,224,.75)}
+.hm-f{display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap;margin-bottom:1rem}
+.hm-f button{background:none;border:1px solid var(--gold);color:var(--gold-light);padding:.45rem 1rem;border-radius:20px;font:.72rem 'Space Mono',monospace;cursor:pointer;text-transform:uppercase;transition:.2s}
+.hm-f button.on,.hm-f button:hover{background:var(--gold);color:var(--green-deep)}
+#hm-q{width:min(380px,90%);padding:.7rem 1rem;border-radius:6px;border:1px solid var(--gold);background:rgba(255,255,255,.07);color:var(--cream);font:1rem 'Crimson Pro',serif}
+.hm-w{display:grid;grid-template-columns:310px 1fr;height:640px}
+#hm-list{overflow-y:auto;background:#150f0b;border-right:1px solid rgba(200,150,26,.3)}
+.hm-it{padding:1rem 1.2rem;border-bottom:1px solid rgba(255,255,255,.07);cursor:pointer;transition:.2s}.hm-it:hover,.hm-it.on{background:rgba(200,150,26,.15)}
+.hm-it b{color:var(--gold-light);font:700 1.05rem 'Playfair Display',serif;display:block}.hm-it small{font:.65rem 'Space Mono',monospace;text-transform:uppercase}
+#hmap{height:100%;background:#111;z-index:1}
+.leaflet-popup-content-wrapper{background:var(--green-deep);color:#fff;border-radius:8px}.leaflet-popup-tip{background:var(--green-deep)}
+.leaflet-popup-content h4{color:var(--gold-light);font:700 1.15rem 'Playfair Display',serif;margin-bottom:4px}.leaflet-popup-content p{font-size:.9rem;color:#ddd;line-height:1.5;margin:0}
+.hm-dot{width:16px;height:16px;border-radius:50%;border:3px solid #fff;box-shadow:0 0 10px currentColor}
+@media(max-width:900px){
+.nv{position:fixed;top:70px;left:0;right:0;flex-direction:column;align-items:stretch;background:var(--green-deep);padding:.8rem 1rem;border-bottom:2px solid var(--gold);transform:translateY(-140%);transition:.3s;max-height:calc(100vh - 70px);overflow-y:auto}.nv.open{transform:none}
+.dd-panel{position:static;transform:none;width:100%;max-height:260px;display:none;opacity:1;visibility:visible;margin-top:.3rem;box-shadow:none}.dd.open .dd-panel{display:block;transform:none}
+#nvb{display:block}nav .nav-btn{display:none}
+.ab-grid{grid-template-columns:1fr}.hm-w{grid-template-columns:1fr;height:auto}#hm-list{max-height:220px}#hmap{height:480px}}
+
+</style>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Crect width=%27100%27 height=%27100%27 rx=%2722%27 fill=%27%231a3a2a%27/%3E%3Ctext x=%2750%27 y=%2772%27 font-size=%2770%27 text-anchor=%27middle%27 fill=%27%23e8b830%27 font-family=%27serif%27 font-weight=%27bold%27%3EF%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+
+<!-- --------------------------------------
+     NAVIGATION
+-------------------------------------- -->
+<nav>
+  <a href="#hero" class="nav-logo">Folk<span>view</span></a>
+  <ul class="nv" id="nv">
+    <li><a href="#hero">Home</a></li>
+    <li><a href="#mission">Mission</a></li>
+    <li><a href="#about">About Us</a></li>
+    <li class="dd" id="dd">
+      <button class="dd-btn" id="dd-btn" aria-haspopup="true" aria-expanded="false">Sections <i class="fas fa-chevron-down"></i></button>
+      <div class="dd-panel" id="dd-panel">
+        <a href="#folklore"><span>📖</span><div>Folklore<small>What is folklore</small></div></a>
+        <a href="#archive"><span>🗂️</span><div>Digital Archive<small>Photos · films · audio</small></div></a>
+        <a href="#community"><span>👥</span><div>Folk Communities<small>Districts &amp; groups</small></div></a>
+        <a href="#sdgs"><span>🎯</span><div>Folklore &amp; SDGs<small>Sustainable development</small></div></a>
+        <a href="#health"><span>🌿</span><div>Public Health<small>Folk medicine</small></div></a>
+        <a href="#women"><span>🧵</span><div>Women in Folk Culture<small>Crafts &amp; songs</small></div></a>
+        <a href="#social"><span>🔬</span><div>Social Development<small>Research</small></div></a>
+        <a href="#artisans"><span>🏺</span><div>Support Artisans<small>Livelihoods</small></div></a>
+        <a href="#international"><span>🌍</span><div>Cultural Bridges<small>International</small></div></a>
+        <a href="#projects"><span>🚀</span><div>Our Projects<small>Active initiatives</small></div></a>
+        <a href="#team"><span>🤝</span><div>Folkview Team<small>Roles &amp; duties</small></div></a>
+      </div>
+    </li>
+    <li><a href="#heritagemap">Heritage Map</a></li>
+    <li><a href="#team">Team</a></li>
+  </ul>
+  <button class="nav-btn" onclick="document.getElementById('heritagemap').scrollIntoView({behavior:'smooth'})"><i class="fas fa-map-marked-alt"></i> Explore Map</button>
+  <button id="nvb" aria-label="Menu"><i class="fas fa-bars"></i></button>
+</nav>
+<div id="prog"></div>
+
+
+<!-- --------------------------------------
+     HERO
+-------------------------------------- -->
+<section class="hero" id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-motif"></div>
+  <div class="hero-border"></div>
+  <div class="deco-circle dc1"></div>
+  <div class="deco-circle dc2"></div>
+  <div class="deco-circle dc3"></div>
+  <div class="hero-content">
+    <div class="hero-tag">Bangladesh Living Heritage Initiative</div>
+    <h1 class="hero-title">Folk<span class="accent">view</span></h1>
+    <p class="hero-subtitle-bn">বাংলাদেশের জীবন্ত ঐতিহ্য ও সংস্কৃতির ডিজিটাল ঠিকানা</p>
+    <p class="hero-desc">A global digital interface for Bangladeshi cultural heritage — preserving living traditions, empowering folk communities, and connecting Bangladesh to the world through research, storytelling, and digital innovation.</p>
+    <div class="hero-actions">
+      <a href="#archive" class="btn-primary">Explore Archive</a>
+      <a href="#heritagemap" class="btn-outline">Heritage Map</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat">
+      <span class="stat-num">64</span>
+      <span class="stat-label">Districts Covered</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">8</span>
+      <span class="stat-label">Divisions</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">17</span>
+      <span class="stat-label">SDG Goals</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">8</span>
+      <span class="stat-label">Living Traditions</span>
+    </div>
+  </div>
+</section>
+
+<!-- --------------------------------------
+     MISSION & VISION
+-------------------------------------- -->
+<section class="mission-section" id="mission">
+  <div class="container">
+    <div class="section-tag">Mission & Vision</div>
+    <h2 class="section-title" style="color:var(--gold-light)">Why <em style="color:var(--terra-light)">Folkview</em> Exists</h2>
+    <p class="section-intro">A platform built not merely for documentation — but for transformation, recognition, and global dialogue.</p>
+    <div class="mission-grid">
+      <div class="mission-card">
+        <h3>🎯 Our Mission</h3>
+        <p class="bn-text">বাংলাদেশের লোকায়ত ঐতিহ্যকে বিশ্বের কাছে মর্যাদার সাথে উপস্থাপন করা — বিপন্ন ঐতিহ্য সংরক্ষণ, প্রান্তিক কণ্ঠস্বরকে গুরুত্ব দেওয়া এবং লোকসংস্কৃতিকে জনস্বাস্থ্য ও উন্নয়নের সাথে যুক্ত করা।</p>
+        <br>
+        <p>To present Bangladesh to the world with dignity — through the lens of its living folklore, preserving endangered traditions, amplifying marginalized voices, and demonstrating how folk culture connects to health, development, and global knowledge systems.</p>
+      </div>
+      <div class="mission-card">
+        <h3>👁️ Our Vision</h3>
+        <p>A Bangladesh whose cultural heritage is digitally immortal — where every folk artisan, healer, performer, and oral tradition-bearer is visible, valued, and economically empowered. A world where Bangladeshi folklore stands as equals in the global cultural conversation.</p>
+        <br>
+        <p class="bn-text">এমন একটি বাংলাদেশ যেখানে প্রতিটি লোকশিল্পী ও ঐতিহ্যবাহী মানুষ ডিজিটালভাবে দৃশ্যমান, মূল্যবান এবং অর্থনৈতিকভাবে ক্ষমতায়িত হবে।</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT US -->
+<section class="about-final" id="about">
+  <div class="container">
+    <div class="section-tag">Leadership</div>
+    <h2 class="section-title">Meet Our <em>Founder &amp; Advisor</em></h2>
+    <div class="divider"></div>
+    <div class="ab-grid">
+      <div class="ab-card">
+        <img class="ab-photo" src="data:image/webp;base64,UklGRp4gAABXRUJQVlA4IJIgAADQsACdASp8AXwBPkkkj0WioiGlpTN5kLAJCWduvnUXiEgsK272wzw+uPXX6fjbTl960/rxdupsyDf9Z4l+gj6RLWuU/m/5h/hesruv+b/+r6jv5R/Y/9nwrQqWXre0eOl5SPp3sF/z70f/9XzD/XXsJfsF1y/R0IQzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMu9+lOJ0TR/N/QYqxIrSDN0T3vIqc/iuLrLDdb//////////zm6CfjJ2gvyQuThS/syp7+fOfoRXkfr9jXjyI3HNeINDN+Qm7wtR/93FVVVVVVVVFctt+/x12h0Tfp6WCwoQsSBZJRTbEuBTKYTatq5iUn4IoNiF1cEveWJ6RtG7pOCYCn+VVVVVVVVUSKnampMZp4iSIn5Ubs2122KFW4VbYml4JpmGhVp3Vn2qlNp5Uthf0lytgg9RTWXlKqqqqqqqqRzHVpVqi5lEG9lUR0+8axOpGrMShaDnx4HEA+uKidNe0Azsdv2IQlr/IPieAsWEL3siqqqqqqqqqIA5rke+0+TlnyxAFr+PE79SZkm8qI+5W/hje8mh9Gv5yn8yx0Fm/m/xeKWZeIX2hD6TqqW9xVVVVVVVUYQ7sLhiSk7X7MrZ0bLf/XuHAfetLz6wKMorWdrGXzvMLs5Ce2vAH6EaXmvv80X6gOMzKrKW1dV7i2BNrceMqqqqqqqqPED3620inNNhiXr+kp1fDJitKmTpvJpkgn2YuuOIkLwx95HCKY0N9S9ZbrMhMVZNdjxWx/+Aozd3d3d3d3PvcbdgLIJOZH4e38Ode4BpDtWwc7kwpzFgfUE5dWTHqq9Z2+bTOJ5okovQCCWrI8mpJYBL12ZmZmZmZmIcIMcA16cXxRx9yYIzPMP7F68zUmz6ukPVL+aoCl9b7D//SmhNx9KU3NnMeQMdrbNdqmX//////////Y6DMR3zDPYF0pgdMdeOdGPB97p7lQLHDiOPtX1Olt6HEWVhnYde2jVVVVVVVVS1COXvix+u6Fmq8nSVJt2ewNWCgTLU+p2rkeuSlZWa0PjytdArAyDiXxI4EH5yTKwJU7u7u7u7udjOeFjPdYSOwjE/yPVhPjk5tNLRVbhkL7EUERK0ZN5h5aM07562GZ0BZTIbcVnwz78iDAr5rn7JDVVVVS0PqzV//9xeCjqpvQoQcMEHnWvCbRljJw/eDB8o2mtmuj8lFEhnCtHdCrvj56eEnFf8McYoMi3dkPX5F5kkyZyjVLNT4V0PH///VHV9lx8V5f0CLIlhxsbOKVjvctjtYN42h+4FQBkGOl3YhGxika3ulzZf3mptbP7WRSHeeqfg8Uj9bT63CVy+o94IQQsRfIUelAnsGyt6qoyYskLBh1AVY8Xcxd5iLSoJ2TL8JJm184CvZr1tTICHyC6NHN2J1OSOtp6j6Yq4n5xx2HRMCEyYss7/yddoh+djvt6jRmYcrhvsTwfXNSQormCfJDrim7dYXYW4VloIS4zE4mFAfRajzC4IBbh+sraGn8ufj53WYsR8n7qf53hiZ7FTqpkLRkb6Rs2/BLaoA4U4cDF7EjhHvQLvn2L5LQJZAl/XuUaxBByFlNi2/4gRog00qwWbQk88evZaeiZJvujZkEK3CPThUThnozPaGM2TAJMuGDmYFrFqelgupMTTzWcHNevYDog+c2IaexbPSDmJ2tUbFwvelw5S3dzGriIo1HIvAJZ0h+eNUSKeA4Ayi8GX6S3iJFKmQ1rTO2oj023hDWN6O778FMVCtU/RXHl8fGtBA953WMAfGkmrK8cVj0Y9YjyLtE5sPJ+Keg9PCAzBozAafHEoaBGOGtEmw6JuVz3Mxm/9T0g0PVRHCO4SFCyWO93q4uuNvZNAYaxpCD+TCAAP7/wJgAAAAAAAAESArwADyAcR1pNiq53H9aaJRZl5ZEQTmzwHsB4N7zfPNTG/7mbRNaEu+aGJBpT9xDfrsyRQL5K+Zwyr4+3IH5sF73Z3cw6XP8do+KhhVlr0kMkYb5y+xs6ACZFwvLBNpnYxiW4o/O2Ch7HkOgW4MXpLOAxIfBFl6vt7XZv70X7C97QmLtyr4HG9hUhc3ePWGV9+UdSFISdqzlOW24KVBjqkvj62Rc7z2Y11XBkJ7u9slRHNeptVKSQCpPcW974MmwIIofKKgClaoyCQJ/pdUF+GyYVuscI+curKHbOi75PHYabpl2ehHvDncdNVHjE5mbkFA7iAAwgvA4nqY93d6vS3kjTpi2Vn0+qppngQkjvX0E3xXu53mT/btk8EjBVfJuJhK0vEwUPDGwZclGI+95ipf3G6xP/zKT++rcud32o8DNP6qfw2cwZaPV6+gZDIkEWwYL8CH7mpazima13s2IAPkCCXpEC92CdaNpbVGV6gIA03W/B4OevriFYiewsKrbxJL4GSU8jGiw3VmHzcMnL2x6wcGq1lIVJI6Rj5BIzNKyeM+m/+b2P7UqqG7NS3XB95bSt982Lp8TCrdX9om5vO7NP6c0k61ozviv6vAT82ZMYZLp5RiK/VkLc2pBx+atRxg/UTn1hqkl6CAAdQb31GiBP3lX+ouyr+85IY3wQbQgGR168wvZL1VdjUcfvf/sTdpTNo/m+g/84NeVUqKnvnDsJwU8vIvFebG99wdxnmC1hOy0tCMHqzV6MfrY9fjWgrob8eMb76j5v4ZDobqadcGdp0CP60Dlom5kdRtSbWUv8ROHdfMriqlfMuPXOZcYhmPsWX16qgz8eY8+xXRsr5+nOy2LDIdiKNSW/UoV2ECOYUlCIKr64Ur0TEvu75JU7OEMktBQW0+ycPIO5SHEmEMY9/HLdxUuP5fO5xHwGrPrRBU3BtbfrGPyCSp7L+1V3sKwp20Tz0pAaG/HZilCc6RYNPP9ZUsR+40ANCtTGOWkeo1QCdw6ne6t+CnP0c/tyYB0wFojC90XovGlARxWQygW7HDtZIzPGIAe8RCP8VkbWcrjMJUauh7xBmmNPkBboW2D56/TckdB+aHSUXdpPIZjpfU/CbfkBAVwinBdfcBzQ1A71rCyOVg03WLmVljJ6d5sDeOUMKV6A5faaHmq2hld/sDifBWu6yyR6QJW/1MeVmbKOfZVNji3Loq/bc1cUMHCPKA45uBLQu2S74mrfAdAs17PbdWfHY0rDwe5AxZYWjSS547i8ON7hpJhYrYUxFiJoV7kQyse8NJ4bjO39mCUkvvnZ3v4oKRmX6f9pygi3Y5aY7b9sgSmcvc5ZO7SQxXmBA0ifFFm30vpLXtK9f2TpIteZznO2Q6WFznVWJ8WLDtfqsdbnR9JasMAKmBhRgH/QWjxkK3dcHeV3JFEzHgPMs/uiagBAgl/pEfynwSrHOM4hiPP4dhM6hZUsPCZv9r0machLAI3eLfgS9xK5jx5jZfOMzZf4J61tHEp3CLGsjX6SFQwylSXXaPvm+a1EKN+zcT7Nriw9J6V25WbdVB4wb4w2NBFRbH0BWaXt+mtYJAIHiJb7hrYeCL6Z1zB162lHW3XL/lvbIRpss+/7xl5Qg42R9zvi0SjAZs4SZHugri8s6eDAABl3LKebbaYekVX1PD/L1eD91wABxW9TsU82tgW/aGMZwur5W31eYDaPi7v1H0OQqbO0USvs89CmSYPD8nA9NbV/Y5IhIcNe8DQ/VDcwXP/g5tkfPO469esy0oq8n4L5MMdTJmtO4UajySOT+eWZL6j5/X/WzgMouh8F+LUM2+v+9coBXfI0pMt177i+InhFnWWZSPERSZIiDQDvn2jKiKSBDrNxy6p4EONe7Tl+bqj6CSW0z69jHb+L3hLvJuYPT+ItLz+GMYN7vCB7NPUXwBCAj9qZ67muHX7/r1+eZ/nKmcFqDEngcT9e5bri3pgNpRrX/ccbSXZppxn5v7kzpTlgm03CJ7CtepDKe1jph1MTMVCZF/SYEdO9tfQsuZwWUvJYLOQmiz9DQ/QWR9/x2Xo89CLFBHNHCsXPGLSIczgk5jTMYBQQlI7sYXwXpZipPl5uE4/QH5Ogg3v8kZ0tjQ20WIIaaTQI586oFSTUdiE+sAh2u900Mat9gy0/G2xr2k+lAABiSSLN83TtETt723EYMS8dEOH/vJaFxL5JXDNfd2bTw3pXCehx/wSGENji6dhUr+XhGSFNMljjROGk/cSuaoNUp2wH1FWxdkqzJHY6nWYZLm9oO/qwKyX+FG/ONV/2U6xfuXzWHNOPL07/rxCb7mQUKRSKArYuDV6+urk/rPm0J/69BirZ3lda64PHWIm/T1b6CD789neqQyK2tBVe64Un0bdUuWMRdPfJOUWKbp2YSfPibdPHADVK8aXCR34W48fO33o9F70E4UVmYm2b04+sME2bY3OcVgQSfxBlzXzTms42duRUDzwfOZRcj6gIDrzSDLHJQI9a9CoVykDws+QN3k7O/OJG76vbQz/eqbNmKMQsir7umAf5MVISk6C/QpkceGFaWM2Pl8NzU8yd+sQKNotdgTyqwoWZwl0cNzAxHxi8duinKQV0CuRwIvlTpoMw3G7zYjBnI+WvjyUZg1C4Dsq9k5FOYj0an8GtrDKhnUUK1Y/iARYEgg9OyEhHADPCLOg1aO8BFF3/AOkjCthFKSoV0tumkmjinE48Fdqw2QaZC7wPiKhvT9azbXHu+ud/Vqv9ACtFuEHrnUFG7R/E8AADUq7WwagbpH0fNMsA0Z4KoZIhf8vP8YPluamzFNauQR7/G1Lre6VhsbxiL7rKmPNsNxt4t0TJlFWDAvjIH1FJni/1HYvW4oTPU9L/mgx/XdvxTcbau5gMDq3cnw0owna9Iyuhq64u972URyWT/xIDNodfrmCZn13LBap5aMaOaulfdmUltSzLNt4XF23DYJKD9PC95t+OQfhu8joQc/Kx4j39jUhs7feMMzpMK3Hp+D0abRKJ0i4hP77zZ+6z4QORRzmI3JseCZW+JrLkw3fbxyfjUsQCLWLF2lsIznk2jvoiyuQbtIWXeStw2E8pdh9r6B1/HVQQSHV/xsRLsjCqk5M4AK+8mCrzLrqpHOfq6/KtJDjr1WCVNxb5wqmDUxhAAyeM8iJhdEXTtgjGWIitJEP2N3ClMR893lN/XAvtET25MoRXD3TeXyOVCbwI/EabjFtJZz8ZcytKTtwev5/dgW985bh7bfWMekkKhyGzVhjbyuLo/l9bJEnlLHbJQi69oAQPFC8ZJkub8uxaksoFsQqCkH9HLLVZtQQ4LgZ7z/8AGa8Z7kFKUzP6y8Zcw4BjJA7lUgIpgYzgrLi4ucjxur5pJlz2tiDbAKvBUYxb3Av6FYZrLRq6Ce3SK6tlw3ezXsDhG0T2kUhN1zB5g3A8dvKHH1PUXjnwoPLJ2ZsMI4/Igf4sdaWaVNo5k4Cvf3DRCnKh+388TbNalTMgNdX+tzHPruYFlDXuLHoryMGoUfSmM1i5GoTgEYxu44k4VaCR08zxQMNAQ5djklE2DXbyOviMQ8wSrdILSH5vbRsBi1tBFehbCnd36DVifmYydLE6XTreQrWHVPgEFX3aTtrCAA614hvqP+ZeAfcrHUGKghqzXHHtlK/1C4di1HQrK7X8p1dTAcf4+RfMrWKMZaIsisXITaopDbx0UvINDDZX5GCosdcbTxaumU3pc6wlWqfWvWJrNvmNceeMoqXA5F5B2bC6dFQ8qFCdQLKVlXVTiSMYwIj1nE3iBeb2A7eDtocVzEKaLgm7irC2A1W5hP4W7EiUXiuwWx7QiW3tB7gnwmV+BeZdHLM+eORsOZsHC1+3Vfs4f91P5GNmk4pVZPV4Nm4kkcXsyIUyW/ZB7upf1DiIOowqxrUvb2fWWfLMRPuYnbYkgdrwEhEnhVeVcA4vPbp9soCD579EKSH3DmrWYHWZImXfazE9if3zR39J3Gsm8UvsdUT3VIkJ55lUp2WV+BBvYKJX+n6dbV1PfyvCY7iY2+cF9ezA6wi7H6rxR/MkyqonIcrVcbDqMtKnFG/JnF0QwVenaY4TX5BMGAX4BvPlsE7ZRlwMGLbdSxFbeVJ2KWMteceRJsH8aFYAAB8iz6DbvgUpsJGqnF7c3UUOmK0SvReWwIne3o+IB20INrya8nSabMOnEtHXJ1jpfXE3r/4n75XdklOK/tzy15SKaddl3TzGybXGFFcCI3mPIM6GAndzbs/QvFm8yGbLA2b7OXAT6wl6K5M0yc0yq8wFMuHId71PCoCP2ulJee0wanlYkwA4Tro98kp2KXYnOMER+9jUpe6zfAkE3mEH3FRkyFeTFxSeJOcpe+BXz82cWADIAod3CxYvsJCCkt6wjuHgqSl2kNUcEX+cP9mVpB6HqxoUjOELsRYaxdwm3BnBj7FXlBTya2ldLR1/4dHhfg+X0378nVhD7Kp1ZL74Kuti4TsXzPBuUQ5xGl3xZkJDNggWAAVGfX5QRGKo3E0aFmijRaOlfEN+EbYq/IFMTxWeSXzt4OE+TUefRfrb4hbWCfCKOB8YCRltUtq97Zd1deB0XvI80YINPCqOv4WnXZQb7hgNykefLbfZeK+/ILVKWMCTgLJLEtyfq3z3TDq1o5/yIbjn7m+tl3IIES+MS1IED0cr5z8cnLx/U7EdRoZxn04ZaAVSbZhPc+OMDjNb30mwPJkxdSkG0XXQsPxvHXWirL1cqFRxDt2/OqWT7bQRdo+JRvXQ6AeSjA8toJvADKtB1nGTdyqOkAiWZGu50SHQermDQ+bz0Yl704JqdBqbAR5mPZTMs3uQq12/LTaOCQHTfzhlDs1c+SD1PlE2/8F5NNqM4vf4KwW5xiTwPTCYqW3PhA1xP2WFCSpovgp0l/W7GzRficAsf9QvfWNSZ/zT3Er5QzN6uFKLCUHUSfR8C993ylLNi4fvI+EAAoohB5r5iSjIAARS0FnoMMSdbpTRtFN4FviNe3fOcj78ZiOtbrf3C9c+ZmpO6Su7aqvg1LR/494ObRtwR7ENk+PYxiskb561jQPzhwvXpJsNCQnmsn6sKvqy9sHeITAy7zuVABr38wQRVmCUCJTMfb4VbPl5yzicGa+/vcd0gaAGmfZZmZZXeJFYjGhHhbpeScEl4IDfbH2GWP37FDXI2aJHRKnkw6TfblszyrXyiDTT5H+X6/xGUw+IT7uhqN8JG2Ov4z9xzo2AU0WwO4kBb7X5O9FdGLb4LvoL30rTj53ULNHis1EdhckfCtjvNZowqK6AKnIEhF8DkewnabCo02W6K3S1WNPidPhHk3ct+GjcPXf6j1k18N0yuJDFbCOl8AoMXYd1l4UIVRp3ZDmVtMXvOb1YIsmQu1UcR+aaPbjVKWO1vcQz0Owym4qf2+3PUi24FV5o0I5+nmaK2HT3OfI2qZRgP6yQr4GQaB8I/ZrUpJAcY+Dci3xy59BrIM31oa3yTVf/Jtr8Nu8vgNKMW+vP01qDpVcBdQ46OSV1rHUH/GI9wKLML6cG4Y69B4bc8GDhjO8r8PZS9Xt5J1Ksf0osijHPbRKs3uoOe606rVjO7+MDn8uVuhzogFh+mEINS7/0uw9PbbA0+wU0ALu+y+e3BOPPXiTcTzrx4DMDcqnDUstkXL6llesRYkz7N9XOaonByqqdrPVGIblHQx+FxmAKly2/p1L9HsgvdY6ET/I+tek79r43k+MFoYk1AZ4cwZrPCmmb4yjoKo0KD+LZ2HOWT9AqjxjEF1GJWUADLeCT9XYFhAeMupFXLe0jDtniMLLXgVaUmhgGRESHNa4JjLk2QPcLz/VMs708dXlZw+0VSMdNQbh/ELDphqfZtJh15cID67w3Q0ehWOJb3dEVvnpurBp/t1/DfQpFbtbQZ91CuAsuoS7X1Zna8ckUl9FploG6LbqtZJRODfNNKR+xLziSQQ82+7OZxZ/aJdSwI5RnTDXwJflUY2TzRJiQVG67LRNcj1Hnrg9cspVQVf51HOlWb6ndCEZ21dZW1KmUFQApL3KzKhfeqfeoqaU+pA5Aw8DUJjbxFl7Nu7J0r/8Lwhpz++FckaxcMsIowa3vWJAWVpjj0+qgnc/HHgeMRCo6WynNqZ7k7ABzI5n7RUDKUWUMUQyncZ12qUwQQ5d+Ciur/jns9utffp4Pvvs/htu9fak3hB7Jf5rKoK2HKwpbpfQW6xNB4k/vGINC19wPTqYchefdXK2XxrvOslSIzKHKP+75r1+HPv7kzaj9C6o+T/pod4vMZzwYO0DmvZydbeUhj1Lcf0goSy7x8Pz599/MZms0c8jqlHQvCo8J8uewuZrSVILs+a6ScjsgQStmIGQAUmBcWwROlIiYIX4462G+/6qAwrAYqtisTU8guGoliqD//MKo48MQASobSmV2dgxhmqKp0tZ0rXdjJfwF3lJcu96XiLe3kbYgPsE6zkTcIAzX+iXEGMs40JZ3XVt3ggeFQBOOyB72iTfRA9tVjphUjp1T51eAwAFD/bg+SllcUYWA2B6EzQsfggLLnRRSU+C1Lwom4NXXqZVgPpXqBaCRp1oLyJnJb93HspK0KJ12f0i4eeV9DFtrDq6p+WOvUgKjuD4Cz7C2HI5En6wj0yjsg8PMFGRW4sZLdznQ27T4TKA5f/T3zpZbU+wz9lhvTLSVls0a4fHq1fX8/i3cWABzJ9JV7ExZnWss3aIQwJOgAH2slqan3SOC1aP+VaMmGbu0UPKUCXFtz6zkUw457OFR7bi1EwBhDNTTQ5/VmUxFW95juTh98I0l0IKnr3j9ORkkxHMh1pC3CUoJLSevs1M9+G0cdNK3MsKm7dFGz2InnOalfivuCI++HjMbBBFXaO8y4wocuXewMy51muh6P1f+HjWoaNweVJv1YGIg6t6InngJjZSizWD3KBlwxeVJDRbiYbIYHLOO0t87Cs4tSadY4ryjdyxjYyIZMT0jEjU2+RlOi2LO4lq0cpeH/iHwNI8OOqvuQluAC5FpNlvY/lfviP9Ce2Wy5up7LdJVLCBBuV/xFbW0MOwEdUZO51jTL0cZgHZFUm8PBjfBCTC90z8T0u+/5WtFX/kompyST1+okLRe0x4fGxo7FH5VU7aQi32QxJgx+0SgchTboDFBzvQ7YvMBqFeREVtsSEm1ozcnjsJHRJ4UJDvQL5rJEmfXgzgfSmzwJDjaT8z0HPAIFxk2RNpdLx7wxXsXui84RtNVTAIu9AQa1JnhumbaD/USn73u9UnF0M8VJvzlm7kmcZNbYghkpw9PWby8Zbn3n0eiScX3298e0TMmPqfRlnaxCVvRZsLpEggkdW+nl/isHmgoa6nu3DZJin0P3y0bkTKjlrYyvPrVzqBRY704q09xvzI2iaAvnCGrYLdmta6AyOtm2tP9LY4AkLYSXk9jpZ0Zjg6KwTFVh3QBYcLTaczpqzt/zHZdEGrCm6WlM3peGgy1xFyGdVKeG9X7OO7A8H/O8tcCFslgF6jh4geuq1M5/llOJMeDOx06xfkEmzgP/Fs//FmE2UqLlWX381m5+7i3vN3kIHume14k5gimIOujchSt36MLB2FU3JBSTQtXgQwUx7GaK4mRbJFiCjCJeOfGtaGLYnPa5WIfbVvEwimqV2OoM1a5gFBbOBd5nISy8EDjBMUQY4OsCE3sSwf/NCRbWQh7Wa10vF9tewyoug8GJfSm+Wpxp1er3e55XQsBYa2faLakv42q3PIRyMpcRIc1xZhzSooKYIbGXbUpVGuefC8LU9ho7JFfKCMb8LQT39yBBjsmPykS1fkWgcJNtTDtUNxR4TpcQskzcYUNZNZRZjorMZ9fqrpWaaRvF+spT/QPh8XSU71/FDFKaZ9rjjXTjlSClaqy7e9S+YN8cSCDUqL3HYP6Arf0NA8hzTmzTivDoO5tj+L2CfPVztH8wSP7rV8ps3ygBxHNO4pALPYagdI/5TOAmUIYK7st92MnNq530bK3V43BOkBntnlX173gI6JTdRq8idwTlw+Sw3nrhm+W5jBJLX7QKYXof0+Be5p31OwuOBAhwYX0B6wj/qiROL+TgCwAXkM072Q7oj7ZcXwFEmLargMDOKJLi2NLqnfA3upEigZ3WQQvPYOtdup8wHC9nm3bIWYILRonaBuNOr40ZrLD22P/ai27uxc5rb+5T85msoS/TXCaRf8RXp6mYP+xw1h4/7gnUnJSGx2Lf+3bDInucCworOfVthZNTzb05r8SC/E120VfwbgR9pYcfsAXjIB+a4fgWg9qf46nw0rsqPESmlJWSUHxA7oad8ZTSxS1R1zq1NxWOCPGi+4gUCa4rhfsXY5NUlWiBPSMPNqXCEjf1ohgk9VTb3TpzNJuqAUGS3pw1rXqSZ2k2B3+n+yVv5Qxco5eddZSGfCQCIQTn/iV0JLHytChsQmaoqS4HfShn5dYCTRQY/RzHy1KmNBMnYTHYFlBpU+8GZeTiAJXykPCUfUiOARTSixdrZL6rvQkaOWP7MLZqjGFu/dXRWjTJfpqVC4EvCG8gdPwtDAXBqnYTCoRabImMsSgcGOP+ALIZK01YLySlcmrxow31A36YapR5wKfZRufjeSLh53C3roNqdY8HgtMNpeelBByRZbNAZxabAEVhdOIrOLX6PWArhAVDXGVqsL0bWkfdBnR3Bg9isZs66SaOzViBV1LRXAtyidH5lrRQhqFmon0SYTc6RydQjSXYNLOLIvZR+NLF2VT6vxIR1+Gm6VGEvKI6/MhiTnx41erTPq+CttCttfle8mecrBV3axPIjYkUF2h/lO2Qn1RcTXSSN2P1vEPwpM9BApiSAIMFtGEdVAoZFqHNL1x4ilgbVAwdK8FftkN+CnTew+fu4jnNY7YXrDtJAA6wjtHHBcyCSV1xTq5Dgq8b8AMOGF1aZklzwb7hOva8KCxzrk8R+t1yBGvkWpyJx9YjsvMWDDtz5KGb5plK9YlANx8091asYFI0JsPtW2Sq20FZDYgUJ+i/F++hHtjGcYEr895Tw2A9SVprXmtTD7fkRkTfcrm6aFi0dUWUY4P3TAahDU61FdE9pdrYajl2kUoJqEJtpF+ng0gM6id+z3FMpJIFIWXMS8HxgRpvkv28FLnj/eJJ99YWNBKdLb4HeFRxYsn9QLNosUf4s4zoOq75ZMHEvy2/q3F0Lywv1MeuaBU0NgH1Nh6LMZNRghFPXqEvBBHRz2xFTFAAAA" alt="Md. Ahsan Hanif">
+        <div class="ab-badge">Founder &amp; Author</div>
+        <h3>Md. Ahsan Hanif</h3>
+        <div class="ab-role">Researcher · Founder, Folkview Bangladesh</div>
+        <div class="ab-inst">MSS (Thesis Phase), Department of Folklore and Social Development Studies, University of Rajshahi, Bangladesh</div>
+        <div class="ab-q">Folkview-এর রূপকার। স্থানীয় ফোকলোর, গ্রামীণ জীবিকা এবং প্রান্তিক মানুষের জনস্বাস্থ্য সংকটকে গবেষণার কেন্দ্রে রেখে একটি ডিজিটাল বাংলাদেশ গড়াই আমাদের লক্ষ্য।</div>
+        <div class="ab-chips"><span>Folklore</span><span>Fieldwork</span><span>SPSS · R · NVivo</span><span>One Health</span><span>Bangla · English</span></div>
+      </div>
+      <div class="ab-card adv">
+        <img class="ab-photo" src="data:image/webp;base64,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" alt="Abdullah Al Mamun, PhD">
+        <div class="ab-badge">Research Advisor</div>
+        <h3>Abdullah Al Mamun, PhD</h3>
+        <div class="ab-role">Professor, Dept. of Folklore &amp; SDS, RU</div>
+        <div class="ab-inst">Adjunct Fellow, School of Social Science, Western Sydney University, Australia</div>
+        <div class="ab-q">HRSUF Lab-এর প্রতিষ্ঠাতা। জলবায়ু পরিবর্তন অভিযোজন, প্ল্যানেটারি হেলথ, হেরিটেজ ইকোনমিক্স এবং ইকোসিস্টেম-ভিত্তিক সমাধানের উপর গবেষণায় ২ দশকের আন্তর্জাতিক অভিজ্ঞতাসম্পন্ন গবেষক।</div>
+        <div class="ab-chips"><span>Climate Adaptation</span><span>Planetary Health</span><span>Heritage Economics</span><span>Ecosystem Solutions</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- --------------------------------------
+     1. DEFINE FOLKLORE
+-------------------------------------- -->
+<section class="folklore-section" id="folklore">
+  <div class="container">
+    <div class="section-tag">Section 01</div>
+    <h2 class="section-title">What Is <em>Folklore</em>?</h2>
+    <div class="divider"></div>
+    <p class="section-intro">Folklore is the living pulse of a people — transmitted through generations not in books, but in breath, memory, song, craft, and gesture. In Bangladesh, it is the very architecture of identity.</p>
+
+    <div class="folklore-tabs">
+      <button class="tab-btn active" onclick="showTab(this,'basics')">Basics</button>
+      <button class="tab-btn" onclick="showTab(this,'bd-context')">Bangladesh Context</button>
+      <button class="tab-btn" onclick="showTab(this,'subcontinent')">Subcontinent</button>
+      <button class="tab-btn" onclick="showTab(this,'history')">History</button>
+      <button class="tab-btn" onclick="showTab(this,'importance')">Why It Matters</button>
+    </div>
+
+    <div id="basics" class="tab-panel active">
+      <div class="folklore-grid">
+        <div class="folk-card">
+          <div class="folk-card-icon">📖</div>
+          <h4>Definition</h4>
+          <p>Folklore encompasses the traditions, beliefs, customs, stories, songs, dances, crafts, and knowledge systems that communities create and transmit informally across generations. It is both a process and a product of collective identity.</p>
+        </div>
+        <div class="folk-card">
+          <div class="folk-card-icon">🗣️</div>
+          <h4>Oral Traditions</h4>
+          <p>Myths, legends, folktales, proverbs, riddles, and epics passed down verbally. In Bangladesh: Manasha Mangal, Behula-Lokkhinder, Pala Gaan, Kabigan, and countless regional narrative forms.</p>
+        </div>
+        <div class="folk-card">
+          <div class="folk-card-icon">🎵</div>
+          <h4>Folk Music & Performance</h4>
+          <p>Baul, Bhatiali, Murshidi, Jarigan, Sari Gaan — music forms that encode philosophy, ecology, love, and resistance. Each river valley has its own musical vocabulary.</p>
+        </div>
+        <div class="folk-card">
+          <div class="folk-card-icon">🏺</div>
+          <h4>Material Culture</h4>
+          <p>Crafts, tools, architecture, textiles, and everyday objects made by traditional artisans. Nakshikantha, Jamdani weaving, terracotta pottery, bamboo craft — tangible expressions of worldview.</p>
+        </div>
+        <div class="folk-card">
+          <div class="folk-card-icon">🌾</div>
+          <h4>Folk Knowledge Systems</h4>
+          <p>Indigenous agricultural calendars, weather prediction, folk medicine, botanical knowledge, and ecological management passed down through practical community experience.</p>
+        </div>
+        <div class="folk-card">
+          <div class="folk-card-icon">🕯️</div>
+          <h4>Folk Belief & Ritual</h4>
+          <p>Ceremonies, rites of passage, festivals, and spiritual practices that structure community life. Includes syncretism between Islamic, Hindu, Buddhist, and animist traditions in Bangladesh.</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="bd-context" class="tab-panel">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;">
+        <div>
+          <h3 style="font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--green-deep);margin-bottom:1rem;">Bangladesh's Unique Folk Landscape</h3>
+          <p style="font-size:1rem;color:#4a3728;line-height:1.75;margin-bottom:1rem;">Bangladesh's geography — delta rivers, haor wetlands, Chittagong hills, coastal belts, and plains — has produced extraordinary ecological diversity in folklore. Each landscape cultivated distinct folk forms adapted to the rhythms of water, land, and season.</p>
+          <p style="font-size:1rem;color:#4a3728;line-height:1.75;margin-bottom:1rem;">The Bengal delta's folk culture represents a unique synthesis: the Sufi mysticism of Baul philosophy, the artistry of Muslim weavers, the boat-building traditions of river communities, and the healing practices of forest-dwelling ethnic groups all coexist within 147,570 km—.</p>
+          <p style="font-size:1rem;color:#4a3728;line-height:1.75;">Key institutions: Bangla Academy, Shilpakala Academy, and university folklore departments have contributed to preservation — but the digital gap remains enormous.</p>
+        </div>
+        <div>
+          <div class="folk-card" style="margin-bottom:1rem;">
+            <div class="folk-card-icon">🎶</div>
+            <h4>Baul Philosophy</h4>
+            <p>UNESCO Intangible Cultural Heritage. Baul songs express a spiritual philosophy of human divinity, transcending religion and caste through music and poetry.</p>
+          </div>
+          <div class="folk-card" style="margin-bottom:1rem;">
+            <div class="folk-card-icon">🐅</div>
+            <h4>Sundarbans Folklore</h4>
+            <p>Bonobibi worship, tiger-lore, fishermen's rituals — the Sundarbans mangrove ecosystem has generated a unique mythological-ecological knowledge system.</p>
+          </div>
+          <div class="folk-card">
+            <div class="folk-card-icon">⛰️</div>
+            <h4>Chittagong Hill Tracts</h4>
+            <p>11 ethnic communities including Chakma, Marma, Tripura, and Bawm — each with distinct oral traditions, textiles, ceremonies, and cosmological beliefs.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="subcontinent" class="tab-panel">
+      <p style="font-size:1.05rem;color:#4a3728;line-height:1.75;margin-bottom:2rem;">Bangladeshi folklore sits at the heart of the great Bengali folk tradition, which itself is a living tributary of the vast Indo-Gangetic cultural continuum spanning present-day Bangladesh, West Bengal, Assam, and beyond.</p>
+      <div class="folklore-grid">
+        <div class="folk-card">
+          <div class="folk-card-icon">📜</div>
+          <h4>Bengal's Folk Roots</h4>
+          <p>The Bengali folk tradition traces to the Charyapada (8th–12th century CE) — the oldest Bengali literary texts, which are essentially folk songs combining Vajrayana Buddhist philosophy with vernacular imagery of rivers, boats, and daily life.</p>
+        </div>
+        <div class="folk-card">
+          <div class="folk-card-icon">🌊</div>
+          <h4>Shared Delta Culture</h4>
+          <p>The folklore of the Bengal delta — shared across Bangladesh and West Bengal — includes the Mangalakavya traditions (Manasha Mangal, Chandi Mangal, Dharmamangal) that represent a rich fusion of Brahminic and folk religiosity.</p>
+        </div>
+        <div class="folk-card">
+          <div class="folk-card-icon">🕌</div>
+          <h4>Sufi Influence</h4>
+          <p>Persian and Central Asian Sufi traditions, arriving via Muslim mystics from the 13th century, profoundly transformed Bangladeshi folk spirituality — producing the syncretic Baul-Fakir tradition that is uniquely Bengali and globally unique.</p>
+        </div>
+        <div class="folk-card">
+          <div class="folk-card-icon">🤝</div>
+          <h4>Subcontinental Connections</h4>
+          <p>Shared folk forms with India: Pala (with Odisha's Pala), nautanki traditions, wandering minstrel cultures (Bede, Baul, Fakir), and craft traditions (kantha stitching, muslin weaving) with deep subcontinental roots.</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="history" class="tab-panel">
+      <div class="timeline">
+        <div class="timeline-item">
+          <span class="timeline-era">8th–12th Century CE</span>
+          <h4>Charyapada — The First Bengali Folk Voice</h4>
+          <p>Discovered by Haraprasad Shastri in 1907, these 47 mystic Buddhist songs in proto-Bengali represent the earliest documented folk expression of the Bengal delta — sung by wandering Siddha masters.</p>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-era">13th–17th Century</span>
+          <h4>Mangalakavya & Sufi Folk Poetry</h4>
+          <p>The Mangal narratives (Manasha, Chandi, Dharma) synthesized Brahminic and folk religion. Simultaneously, Sufi poets like Shah Jalal's disciples introduced mystical folk songs that became foundational to Bangladeshi spirituality.</p>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-era">18th–19th Century</span>
+          <h4>Baul Renaissance & Colonial Documentation</h4>
+          <p>Lalon Fakir (1774–1890) crystallized the Baul tradition into a philosophical movement. Colonial-era scholars like James Wise and Dinesh Chandra Sen began the first systematic documentation of Bengali folklore.</p>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-era">20th Century</span>
+          <h4>Language Movement & Folk Revival</h4>
+          <p>The 1952 Language Movement transformed folklore into political identity. Bangla Academy (est. 1955) institutionalized folklore studies. Independence (1971) made folk culture central to national identity-building.</p>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-era">21st Century</span>
+          <h4>Digital Age & The Folkview Initiative</h4>
+          <p>Rapid urbanization threatens oral traditions. The Folkview project represents a new paradigm: using digital technology not merely to archive the past, but to activate folklore as a living resource for sustainable development.</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="importance" class="tab-panel">
+      <p style="font-size:1.05rem;color:#4a3728;line-height:1.75;margin-bottom:2rem;">Folklore is not nostalgia — it is a strategic national resource. Here is why it matters now more than ever:</p>
+      <div class="folklore-grid">
+        <div class="folk-card">
+          <div class="folk-card-icon">🧠</div>
+          <h4>Identity & Psychological Wellbeing</h4>
+          <p>Cultural rootedness is empirically linked to psychological resilience. In the face of rapid globalization, folklore provides communities with meaning, continuity, and dignity.</p>
+        </div>
+        <div class="folk-card">
+          <div class="folk-card-icon">🌿</div>
+          <h4>Indigenous Health Wisdom</h4>
+          <p>Folk medicine encodes millennia of empirical botanical and ecological knowledge. Many modern pharmaceuticals derive from folk remedies. Preserving this knowledge is literally a matter of global health.</p>
+        </div>
+        <div class="folk-card">
+          <div class="folk-card-icon">💰</div>
+          <h4>Economic Potential</h4>
+          <p>Cultural tourism, craft industries, and digital heritage platforms represent billions in economic value. Bangladesh's folk culture remains economically underutilized — Folkview aims to change that.</p>
+        </div>
+        <div class="folk-card">
+          <div class="folk-card-icon">🌳</div>
+          <h4>Ecological Knowledge</h4>
+          <p>Indigenous environmental knowledge — flood management, agricultural biodiversity, forest stewardship — embedded in folklore is directly relevant to climate adaptation in Bangladesh.</p>
+        </div>
+        <div class="folk-card">
+          <div class="folk-card-icon">⚖️</div>
+          <h4>Social Justice</h4>
+          <p>Folk communities are disproportionately marginalized. Recognizing their cultural contributions is an act of social justice — connecting directly to SDG goals of reduced inequalities and decent work.</p>
+        </div>
+        <div class="folk-card">
+          <div class="folk-card-icon">🌍</div>
+          <h4>Soft Power & Diplomacy</h4>
+          <p>Bangladesh's extraordinary folk heritage — Jamdani, Baul music, Ricksha art — represents powerful cultural diplomacy assets that remain vastly underutilized in international discourse.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- --------------------------------------
+     2. DIGITAL ARCHIVE
+-------------------------------------- -->
+<section class="archive-section" id="archive">
+  <div class="container">
+    <div class="section-tag">Section 02</div>
+    <h2 class="section-title">Digital <em style="color:var(--terra-light)">Archive</em></h2>
+    <div class="divider"></div>
+    <p class="section-intro">A living, growing repository of Bangladeshi folk culture — material and non-material, tangible and intangible — made openly accessible to researchers, communities, and the world.</p>
+
+    <div class="archive-grid">
+      <div class="archive-item">
+        <div class="archive-item-icon">📷</div>
+        <h4>Photo Archive</h4>
+        <p>High-resolution documentation of folk artifacts, community life, performance practices, and craft processes across Bangladesh's 64 districts</p>
+      </div>
+      <div class="archive-item">
+        <div class="archive-item-icon">🎬</div>
+        <h4>Documentary Films</h4>
+        <p>Short and mid-length documentary films capturing living traditions, oral histories, artisan practices, and endangered cultural forms</p>
+      </div>
+      <div class="archive-item">
+        <div class="archive-item-icon">🎧</div>
+        <h4>Audio Library</h4>
+        <p>Field recordings of folk songs, oral narratives, ritual music, and performance traditions in original regional dialects and languages</p>
+      </div>
+      <div class="archive-item">
+        <div class="archive-item-icon">📚</div>
+        <h4>Research Articles</h4>
+        <p>Peer-reviewed and field-based academic essays on specific folk traditions, communities, and applied folklore practices across Bangladesh</p>
+      </div>
+      <div class="archive-item">
+        <div class="archive-item-icon">✍️</div>
+        <h4>Blog & Stories</h4>
+        <p>Accessible narratives, community stories, field diaries, and multimedia essays bridging academic research with public storytelling</p>
+      </div>
+      <div class="archive-item">
+        <div class="archive-item-icon">🗺️</div>
+        <h4>Geo-referenced Data</h4>
+        <p>GPS-tagged cultural sites, craft villages, heritage locations, and community territories integrated into the Bangladesh Heritage Map</p>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;margin-top:3rem;">
+      <div>
+        <h3 style="font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--gold-light);margin-bottom:1.5rem;">Material Culture</h3>
+        <div class="archive-type-tags">
+          <span class="a-tag">Jamdani Weaving</span>
+          <span class="a-tag">Nakshikantha</span>
+          <span class="a-tag">Terracotta</span>
+          <span class="a-tag">Bamboo Craft</span>
+          <span class="a-tag">Pottery</span>
+          <span class="a-tag">Boat Building</span>
+          <span class="a-tag">Metal Craft</span>
+          <span class="a-tag">Cane Furniture</span>
+          <span class="a-tag">Tangail Shari</span>
+          <span class="a-tag">Muslin</span>
+          <span class="a-tag">Shital Pati</span>
+          <span class="a-tag">Ricksha Art</span>
+        </div>
+      </div>
+      <div>
+        <h3 style="font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--gold-light);margin-bottom:1.5rem;">Non-Material / Intangible</h3>
+        <div class="archive-type-tags">
+          <span class="a-tag">Baul Songs</span>
+          <span class="a-tag">Pala Gaan</span>
+          <span class="a-tag">Bhatiali</span>
+          <span class="a-tag">Jarigan</span>
+          <span class="a-tag">Sari Gaan</span>
+          <span class="a-tag">Folk Tales</span>
+          <span class="a-tag">Proverbs</span>
+          <span class="a-tag">Riddles</span>
+          <span class="a-tag">Jatra</span>
+          <span class="a-tag">Shadow Puppetry</span>
+          <span class="a-tag">Manasha Mangal</span>
+          <span class="a-tag">Wedding Songs</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- --------------------------------------
+     3. FOLK COMMUNITY
+-------------------------------------- -->
+<section class="community-section" id="community">
+  <div class="container">
+    <div class="section-tag">Section 03</div>
+    <h2 class="section-title">Folk <em>Communities</em></h2>
+    <div class="divider"></div>
+    <p class="section-intro">From the Sundarbans to the Chittagong Hills, from the char islands to the tea gardens — Bangladesh's folk communities span every ecology and ethnicity.</p>
+
+    <div class="districts-intro">
+      <div class="districts-left">
+        <h3>64</h3>
+        <p>Districts<br>of Bangladesh</p>
+      </div>
+      <div>
+        <p style="font-size:1.05rem;color:#4a3728;line-height:1.75;">Every district of Bangladesh carries its own distinct folk identity — shaped by river systems, history, agriculture, and ethnic composition. Folkview aims to document living heritage from all 64 districts through fieldwork, community participation, and digital archiving.</p>
+      </div>
+    </div>
+
+    <div class="division-tabs">
+      <button class="div-btn active" onclick="filterDistricts(this,'all')">All Divisions</button>
+      <button class="div-btn" onclick="filterDistricts(this,'dhaka')">Dhaka</button>
+      <button class="div-btn" onclick="filterDistricts(this,'chittagong')">Chattogram</button>
+      <button class="div-btn" onclick="filterDistricts(this,'rajshahi')">Rajshahi</button>
+      <button class="div-btn" onclick="filterDistricts(this,'khulna')">Khulna</button>
+      <button class="div-btn" onclick="filterDistricts(this,'barisal')">Barishal</button>
+      <button class="div-btn" onclick="filterDistricts(this,'sylhet')">Sylhet</button>
+      <button class="div-btn" onclick="filterDistricts(this,'rangpur')">Rangpur</button>
+      <button class="div-btn" onclick="filterDistricts(this,'mymensingh')">Mymensingh</button>
+    </div>
+
+    <div class="districts-grid" id="districts-grid">
+    </div>
+
+    <div class="community-types">
+      <div class="comm-type">
+        <div class="icon">🏺</div>
+        <h4>Rural Artisans</h4>
+        <p>Potters (Kumors), weavers, blacksmiths, woodcarvers, bamboo craftspeople — occupational communities whose skills are endangered by industrial production.</p>
+      </div>
+      <div class="comm-type">
+        <div class="icon">👥</div>
+        <h4>Ethnic Communities</h4>
+        <p>45+ ethnic groups including Chakma, Marma, Tripura, Garo, Santal, Bawm, Mro, Khasi, Manipuri — each with distinct folklore, language, and material culture.</p>
+      </div>
+      <div class="comm-type">
+        <div class="icon">🎭</div>
+        <h4>Folk Performers</h4>
+        <p>Bauls, Fakirs, Jatra performers, snake charmers (Bede community), puppeteers, wandering storytellers — itinerant cultural workers facing economic precarity.</p>
+      </div>
+      <div class="comm-type">
+        <div class="icon">🛶</div>
+        <h4>River Communities</h4>
+        <p>Fishermen (Jele), boatbuilders (Mistri), haor communities, char-dwellers — whose entire material and spiritual culture is organized around water.</p>
+      </div>
+      <div class="comm-type">
+        <div class="icon">🌾</div>
+        <h4>Agricultural Folk</h4>
+        <p>Farming communities who preserve agricultural folk knowledge — seed-saving practices, weather-reading traditions, harvest rituals, and communal labor songs.</p>
+      </div>
+      <div class="comm-type">
+        <div class="icon">🌿</div>
+        <h4>Folk Healers</h4>
+        <p>Kaviraj (Ayurvedic), Ojha (ritual healers), bone-setters, traditional midwives (Dai), and herbal medicine practitioners — repositories of embodied health knowledge.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- --------------------------------------
+     4. SDGs
+-------------------------------------- -->
+<section class="sdg-section" id="sdgs">
+  <div class="container">
+    <div class="section-tag">Section 04</div>
+    <h2 class="section-title">Folklore & <em>SDGs</em></h2>
+    <div class="divider"></div>
+    <p class="section-intro">Bangladesh has committed to the 2030 Agenda. Folkview demonstrates that cultural heritage is not peripheral to development — it is foundational to achieving the Sustainable Development Goals.</p>
+
+    <div class="sdg-goals">
+      <div class="sdg-card" style="background:#E5243B">
+        <div class="num">01</div>
+        <div class="goal-title">No Poverty</div>
+      </div>
+      <div class="sdg-card" style="background:#DDA63A">
+        <div class="num">02</div>
+        <div class="goal-title">Zero Hunger</div>
+      </div>
+      <div class="sdg-card" style="background:#4C9F38">
+        <div class="num">03</div>
+        <div class="goal-title">Good Health</div>
+      </div>
+      <div class="sdg-card" style="background:#C5192D">
+        <div class="num">04</div>
+        <div class="goal-title">Quality Education</div>
+      </div>
+      <div class="sdg-card" style="background:#FF3A21">
+        <div class="num">05</div>
+        <div class="goal-title">Gender Equality</div>
+      </div>
+      <div class="sdg-card" style="background:#26BDE2">
+        <div class="num">06</div>
+        <div class="goal-title">Clean Water</div>
+      </div>
+      <div class="sdg-card" style="background:#FCC30B">
+        <div class="num">08</div>
+        <div class="goal-title">Decent Work</div>
+      </div>
+      <div class="sdg-card" style="background:#A21942">
+        <div class="num">10</div>
+        <div class="goal-title">Reduced Inequalities</div>
+      </div>
+      <div class="sdg-card" style="background:#FD6925">
+        <div class="num">11</div>
+        <div class="goal-title">Sustainable Cities</div>
+      </div>
+      <div class="sdg-card" style="background:#BF8B2E">
+        <div class="num">15</div>
+        <div class="goal-title">Life on Land</div>
+      </div>
+      <div class="sdg-card" style="background:#19486A">
+        <div class="num">17</div>
+        <div class="goal-title">Partnerships</div>
+      </div>
+    </div>
+
+    <div style="background:var(--cream);padding:2.5rem;margin-top:2rem;border-left:4px solid var(--terra);">
+      <h3 style="font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--green-deep);margin-bottom:1.5rem;">SDGs in Bangladesh — Folklore's Role</h3>
+      <p style="font-size:1.05rem;color:#4a3728;line-height:1.75;margin-bottom:1rem;">Bangladesh has made remarkable SDG progress — particularly in poverty reduction, gender parity in education, and maternal health. However, the role of folk communities and cultural heritage in this progress remains unrecognized and unreported. Folkview seeks to make this connection explicit and actionable.</p>
+      <p style="font-size:1.05rem;color:#4a3728;line-height:1.75;">Folk medicine supports SDG 3. Folk craft livelihoods connect to SDG 8. Nakshikantha makers advance SDG 5. Traditional ecological knowledge supports SDG 15. Every folk tradition carries developmental potential waiting to be recognized, documented, and scaled.</p>
+    </div>
+
+    <div class="sdg-challenges">
+      <h3>Challenges & Future Directions</h3>
+      <div class="challenges-grid">
+        <div class="challenge-item">
+          <span class="challenge-icon">📊</span>
+          <p><strong>Data Gap:</strong> No systematic mapping of folk communities' contributions to SDG indicators exists in Bangladesh's national reporting frameworks.</p>
+        </div>
+        <div class="challenge-item">
+          <span class="challenge-icon">🏙️</span>
+          <p><strong>Urban-Rural Divide:</strong> SDG progress in cities often comes at the expense of rural folk cultures whose traditional livelihoods are disrupted by urban migration and industrial competition.</p>
+        </div>
+        <div class="challenge-item">
+          <span class="challenge-icon">💼</span>
+          <p><strong>Economic Exclusion:</strong> Folk artisans remain outside formal economic frameworks — lacking access to credit, markets, and intellectual property protections for their cultural products.</p>
+        </div>
+        <div class="challenge-item">
+          <span class="challenge-icon">🎓</span>
+          <p><strong>Education Disconnect:</strong> Folklore studies remain marginalized in Bangladesh's educational curriculum, limiting intergenerational transmission and academic documentation capacity.</p>
+        </div>
+        <div class="challenge-item">
+          <span class="challenge-icon">🧭</span>
+          <p><strong>Future Direction:</strong> Integrate folk community data into SDG monitoring, create cultural enterprise zones, and establish folklore as a recognized development sector in Bangladesh's national plans.</p>
+        </div>
+        <div class="challenge-item">
+          <span class="challenge-icon">💻</span>
+          <p><strong>Digital Future:</strong> Leverage AI, GIS, and open-access platforms to make Bangladeshi folklore visible in global heritage databases and international research networks.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- --------------------------------------
+     5. PUBLIC HEALTH
+-------------------------------------- -->
+<section class="health-section" id="health">
+  <div class="container">
+    <div class="section-tag">Section 05</div>
+    <h2 class="section-title">Folklore & <em>Public Health</em></h2>
+    <div class="divider"></div>
+    <p class="section-intro">Before the hospital came the healer. Before the pharmacy came the forest. Bangladesh's folk medicine tradition encodes centuries of empirical health knowledge — and remains the primary healthcare resource for millions.</p>
+
+    <div class="health-grid">
+      <div>
+        <h3 style="font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--green-deep);margin-bottom:1.5rem;">Folk Medicine Traditions</h3>
+        <ul class="folk-medicine-list">
+          <li>
+            <span class="icon">🌿</span>
+            <div>
+              <h5>Ayurvedic / Kaviraj Practice</h5>
+              <p>Plant-based healing drawing on the Sushruta and Charaka Samhita traditions, localized into Bengali botanical knowledge. Kavirajs treat everything from fever to chronic conditions.</p>
+            </div>
+          </li>
+          <li>
+            <span class="icon">🕯️</span>
+            <div>
+              <h5>Ojha / Ritual Healing</h5>
+              <p>Spiritual healing combining mantras, amulets, and ritual intervention for illnesses understood to have supernatural dimensions — fear, possession, evil eye (Nazar).</p>
+            </div>
+          </li>
+          <li>
+            <span class="icon">🤲</span>
+            <div>
+              <h5>Bone-Setting & Midwifery</h5>
+              <p>Traditional bone-setters (Haddi Baidya) and Dai midwives provide services that are the primary healthcare in rural areas without formal medical facilities.</p>
+            </div>
+          </li>
+          <li>
+            <span class="icon">🍲</span>
+            <div>
+              <h5>Herbal & Food Medicine</h5>
+              <p>Dietary healing practices embedded in folk culture — specific foods, spices, and preparations for illness prevention and recovery, passed through familial oral tradition.</p>
+            </div>
+          </li>
+          <li>
+            <span class="icon">🐍</span>
+            <div>
+              <h5>Snakebite & Venom Treatment</h5>
+              <p>The Bede community — itinerant snake handlers — possess traditional knowledge of snakebite treatment that has saved lives where antivenom is unavailable in rural Bangladesh.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <h3 style="font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--green-deep);margin-bottom:1.5rem;">Health Awareness Through Folklore</h3>
+        <div class="disease-cards">
+          <div class="disease-card">
+            <h5>🦟 Malaria & Dengue</h5>
+            <p>Folk narratives and songs have historically encoded mosquito-avoidance behaviors. Modern public health can adapt these channels for contemporary vector control messaging.</p>
+          </div>
+          <div class="disease-card">
+            <h5>🤱 Maternal Health</h5>
+            <p>Folk songs, rituals, and Dai practice carry encoded knowledge about pregnancy, birth complications, and postpartum care — both preserving wisdom and sometimes perpetuating harmful practices.</p>
+          </div>
+          <div class="disease-card">
+            <h5>💧 Water & Cholera</h5>
+            <p>In the delta, folk cultures developed water purification and safe storage practices. Historical cholera epidemics shaped folk beliefs and behaviors that influenced disease transmission.</p>
+          </div>
+          <div class="disease-card">
+            <h5>🧠 Mental Health</h5>
+            <p>Folk narratives about possession, madness, and spiritual illness provide cultural containers for mental health — both creating stigma and offering community-based support frameworks.</p>
+          </div>
+          <div class="disease-card">
+            <h5>🥗 Nutrition</h5>
+            <p>Agricultural folk knowledge about food varieties, preparation methods, and seasonal eating patterns encodes nutritional wisdom relevant to Bangladesh's persistent malnutrition challenges.</p>
+          </div>
+          <div class="disease-card">
+            <h5>👁️ Eye Health</h5>
+            <p>Folk practices around Nazar (evil eye) express anxieties about visibility and vulnerability — with both protective rituals and herbal eye treatments embedded in folk healthcare.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="health-timeline">
+      <h3>Bangladesh Folk Medicine — Historical Timeline</h3>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem;">
+        <div style="border-left:2px solid var(--gold);padding-left:1rem;">
+          <div style="font-family:'Space Mono',monospace;font-size:0.65rem;color:var(--gold);margin-bottom:0.3rem;">Pre-Islamic Bengal</div>
+          <p style="font-size:0.88rem;color:rgba(247,237,224,0.8);line-height:1.6;">Ayurvedic and Tantric healing systems; forest pharmacopoeias maintained by tribal healers; botanical knowledge embedded in agricultural practice.</p>
+        </div>
+        <div style="border-left:2px solid var(--gold);padding-left:1rem;">
+          <div style="font-family:'Space Mono',monospace;font-size:0.65rem;color:var(--gold);margin-bottom:0.3rem;">Sultanate Period (13th–16th C)</div>
+          <p style="font-size:0.88rem;color:rgba(247,237,224,0.8);line-height:1.6;">Unani medicine arrives via Persian and Arab physicians; syncretism with Ayurveda; Sufi healing practices blend spiritual and herbal approaches.</p>
+        </div>
+        <div style="border-left:2px solid var(--gold);padding-left:1rem;">
+          <div style="font-family:'Space Mono',monospace;font-size:0.65rem;color:var(--gold);margin-bottom:0.3rem;">Colonial Period (19th C)</div>
+          <p style="font-size:0.88rem;color:rgba(247,237,224,0.8);line-height:1.6;">Western medicine systematically marginalized traditional healers; folk medicine retreated to rural areas; first colonial documentation of "native" healing practices.</p>
+        </div>
+        <div style="border-left:2px solid var(--gold);padding-left:1rem;">
+          <div style="font-family:'Space Mono',monospace;font-size:0.65rem;color:var(--gold);margin-bottom:0.3rem;">Post-Independence (1971–)</div>
+          <p style="font-size:0.88rem;color:rgba(247,237,224,0.8);line-height:1.6;">Folk medicine remains primary healthcare for 60%+ of rural population; NGO sector begins integrating folk health knowledge into community health worker training.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- --------------------------------------
+     6. WOMEN EMPOWERMENT
+-------------------------------------- -->
+<section class="women-section" id="women">
+  <div class="container">
+    <div class="section-tag">Section 06</div>
+    <h2 class="section-title">Women in <em>Folk Culture</em></h2>
+    <div class="divider"></div>
+    <p class="section-intro">Bangladeshi women have been the primary custodians, creators, and transmitters of folk culture across centuries — yet their contributions remain largely unrecognized in formal heritage documentation.</p>
+
+    <div class="women-hero">
+      <h3>The Invisible Architects of Culture</h3>
+      <p>From the needle and thread of Nakshikantha to the loom of Jamdani, from the Bhatiali songs sung at the river to the folk healing practices of the Dai — Bangladeshi women have been the backbone of living heritage. Their empowerment is inseparable from cultural preservation.</p>
+    </div>
+
+    <div class="artifacts-grid">
+      <div class="artifact-card">
+        <div class="artifact-visual" style="background:linear-gradient(135deg,#8b2335,#c4622d)">🧵</div>
+        <div class="artifact-body">
+          <h5>Nakshikantha</h5>
+          <p>Running-stitch embroidery on layered cloth — each Kantha tells a story through its motifs: rivers, birds, trees, lotuses. Women transformed discarded saris into community memory.</p>
+          <span class="origin">🏅 UNESCO Intangible Heritage</span>
+        </div>
+      </div>
+      <div class="artifact-card">
+        <div class="artifact-visual" style="background:linear-gradient(135deg,#2d5a40,#4a7c5f)">🧶</div>
+        <div class="artifact-body">
+          <h5>Jamdani Weaving</h5>
+          <p>The world's finest cotton muslin, woven on handlooms using a supplementary weft technique. Jamdani weavers, often women and families in Narayanganj, create fabric poetry.</p>
+          <span class="origin">🏅 UNESCO Intangible Heritage</span>
+        </div>
+      </div>
+      <div class="artifact-card">
+        <div class="artifact-visual" style="background:linear-gradient(135deg,#c8961a,#1a3a2a)">👘</div>
+        <div class="artifact-body">
+          <h5>Tangail Shari</h5>
+          <p>The iconic handwoven silk-cotton saree of Tangail district — produced by the Basak weaver community, featuring distinctive borders and geometric patterns developed over centuries.</p>
+          <span class="origin">📍 Tangail, Dhaka Division</span>
+        </div>
+      </div>
+      <div class="artifact-card">
+        <div class="artifact-visual" style="background:linear-gradient(135deg,#19486A,#26BDE2)">🧺</div>
+        <div class="artifact-body">
+          <h5>Shital Pati</h5>
+          <p>Cool mat woven from murta reeds — primarily by women in Sylhet's Bianibazar area. Each mat is a mathematical exercise in pattern and rhythm, made entirely from memory.</p>
+          <span class="origin">🏅 UNESCO Intangible Heritage</span>
+        </div>
+      </div>
+      <div class="artifact-card">
+        <div class="artifact-visual" style="background:linear-gradient(135deg,#8b2335,#2d5a40)">🎤</div>
+        <div class="artifact-body">
+          <h5>Women's Folk Songs</h5>
+          <p>Biyar Gaan (wedding songs), Janmostami Gaan, Lullabies (ঘুমপাড়ানি ছড়া) — women-dominated song traditions encoding life-cycle knowledge, social commentary, and emotional expression.</p>
+          <span class="origin">🗣️ Oral Tradition</span>
+        </div>
+      </div>
+      <div class="artifact-card">
+        <div class="artifact-visual" style="background:linear-gradient(135deg,#c8961a,#8b2335)">🩺</div>
+        <div class="artifact-body">
+          <h5>Dai Midwifery</h5>
+          <p>Traditional birth attendants who remain primary maternity healthcare providers in rural Bangladesh — carrying embodied knowledge of obstetrics, nutrition, and postnatal care.</p>
+          <span class="origin">🏥 Folk Healthcare</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="background:var(--green-deep);color:var(--cream);padding:2.5rem;margin-top:2rem;">
+      <h3 style="font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--gold-light);margin-bottom:1rem;">Women's Empowerment & Folk Economics</h3>
+      <p style="font-size:1rem;line-height:1.75;color:rgba(247,237,224,0.8);margin-bottom:1rem;">Traditional women's crafts — Nakshikantha, Jamdani, Shital Pati, Tangail Shari — represent not just cultural heritage but economic livelihoods for hundreds of thousands of women. Digital visibility, fair-trade connections, and intellectual property recognition for these crafts represent one of the most direct pathways for combining cultural preservation with women's economic empowerment.</p>
+      <p style="font-size:1rem;line-height:1.75;color:rgba(247,237,224,0.8);">Folkview documents, promotes, and connects women folk artisans to researchers, buyers, and advocacy networks — making their invisible labor visible and valued.</p>
+    </div>
+  </div>
+</section>
+
+<!-- --------------------------------------
+     7. SOCIAL DEVELOPMENT & RESEARCH
+-------------------------------------- -->
+<section class="social-section" id="social">
+  <div class="container">
+    <div class="section-tag">Section 07</div>
+    <h2 class="section-title">Social Development <em>& Research</em></h2>
+    <div class="divider"></div>
+    <p class="section-intro">Folklore studies in Bangladesh sit at the intersection of social science, humanities, and development practice. Folkview contributes to and connects this research ecosystem.</p>
+
+    <div class="research-grid">
+      <div>
+        <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--green-deep);margin-bottom:1.5rem;">Key Research Traditions</h3>
+        <ul class="research-list">
+          <li>
+            <div class="year">1907 — Formative</div>
+            <h5>Haraprasad Shastri — Charyapada Discovery</h5>
+            <p>The discovery and publication of the Charyapada manuscripts established Bengali folklore studies as a systematic academic discipline, tracing cultural continuity across a millennium.</p>
+          </li>
+          <li>
+            <div class="year">1932 — Foundation</div>
+            <h5>Dinesh Chandra Sen — Folk Literature of Bengal</h5>
+            <p>A landmark multi-volume documentation of Bengali folk literature that established taxonomies, archival methods, and theoretical frameworks still referenced in contemporary scholarship.</p>
+          </li>
+          <li>
+            <div class="year">1970s — Institutionalization</div>
+            <h5>University Folklore Departments</h5>
+            <p>University of Rajshahi established the first dedicated Folklore department in Bangladesh, followed by other institutions — creating an academic infrastructure for systematic folk research.</p>
+          </li>
+          <li>
+            <div class="year">1980s–2000s — Applied Turn</div>
+            <h5>NGO Integration of Folk Methods</h5>
+            <p>BRAC, Grameen, and other organizations began integrating folk communication methods (street theatre, folk songs) into development communication and health campaigns.</p>
+          </li>
+          <li>
+            <div class="year">2010s–Present</div>
+            <h5>Digital Humanities & Heritage Technology</h5>
+            <p>Emerging interdisciplinary work combining folklore, GIS, digital archiving, and AI — represented by initiatives like Folkview — represents the frontier of Bangladeshi heritage studies.</p>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <div class="future-directions">
+          <h4>Future Directions — Bangladeshi Social Science</h4>
+          <div class="future-item">
+            <span class="num">01 →</span>
+            <p>Digital ethnography and virtual fieldwork methods for documenting dispersed diaspora folk communities in UK, USA, and Middle East.</p>
+          </div>
+          <div class="future-item">
+            <span class="num">02 →</span>
+            <p>Interdisciplinary collaboration between folklore, public health, environmental science, and economics departments for applied research.</p>
+          </div>
+          <div class="future-item">
+            <span class="num">03 →</span>
+            <p>Community-based participatory research (CBPR) models where folk communities are co-researchers, not merely subjects of documentation.</p>
+          </div>
+          <div class="future-item">
+            <span class="num">04 →</span>
+            <p>Policy-oriented research linking folk cultural data to national development planning, UNESCO reporting, and international heritage diplomacy.</p>
+          </div>
+          <div class="future-item">
+            <span class="num">05 →</span>
+            <p>AI-assisted analysis of oral tradition corpora — automated pattern recognition, linguistic analysis, and comparative folklore databases.</p>
+          </div>
+          <div class="future-item">
+            <span class="num">06 →</span>
+            <p>Regional South Asian folklore research networks connecting Bangladeshi scholars with India, Sri Lanka, Nepal, and Southeast Asia.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- --------------------------------------
+     8. SUPPORT ARTISANS
+-------------------------------------- -->
+<section class="artisan-section" id="artisans">
+  <div class="container">
+    <div class="section-tag">Section 08</div>
+    <h2 class="section-title">Support <em>Artisans</em></h2>
+    <div class="divider"></div>
+    <p class="section-intro">Bangladesh's folk artisans are the living repositories of centuries of accumulated craft knowledge. They face existential threats — economic, cultural, and generational. Folkview advocates for their dignity and survival.</p>
+
+    <div class="barriers-grid">
+      <div class="barrier-card">
+        <span class="barrier-num">01</span>
+        <h4>Economic Marginalization</h4>
+        <p>Folk artisans are trapped in exploitative middleman systems that pay subsistence wages for products sold at high margins in urban markets and internationally. No fair-trade frameworks exist at scale.</p>
+      </div>
+      <div class="barrier-card">
+        <span class="barrier-num">02</span>
+        <h4>Industrial Competition</h4>
+        <p>Mass-produced imitations undercut handmade goods in price, driving buyers away from authentic folk products and making traditional livelihoods economically unviable for younger generations.</p>
+      </div>
+      <div class="barrier-card">
+        <span class="barrier-num">03</span>
+        <h4>Skill Transmission Crisis</h4>
+        <p>Young people in folk communities are leaving traditional occupations for urban informal employment. The loss of skilled practitioners means entire craft traditions disappear within a generation.</p>
+      </div>
+      <div class="barrier-card">
+        <span class="barrier-num">04</span>
+        <h4>No Intellectual Property</h4>
+        <p>Folk artisans have no legal protection for their traditional designs, patterns, and techniques. Corporate appropriation of folk motifs without attribution or compensation is common and unaddressed.</p>
+      </div>
+      <div class="barrier-card">
+        <span class="barrier-num">05</span>
+        <h4>Climate Vulnerability</h4>
+        <p>Many folk crafts depend on natural materials — cane, bamboo, specific plants, clay — increasingly disrupted by flooding, salinity intrusion, and deforestation linked to climate change.</p>
+      </div>
+      <div class="barrier-card">
+        <span class="barrier-num">06</span>
+        <h4>Institutional Invisibility</h4>
+        <p>Folk artisans are absent from formal economic statistics, cultural policy frameworks, and development planning documents. Their contribution to GDP, cultural value, and social cohesion is unquantified and unrecognized.</p>
+      </div>
+    </div>
+
+    <div class="support-cta">
+      <h3>What Folkview Does for Artisans</h3>
+      <p>Digital visibility — Fair-trade connections — Policy advocacy — Skills documentation — Community networking</p>
+      <a href="#projects" class="btn-outline" style="border-color:white;color:white;">See Our Projects</a>
+    </div>
+  </div>
+</section>
+
+<!-- --------------------------------------
+     9. INTERNATIONAL
+-------------------------------------- -->
+<section class="intl-section" id="international">
+  <div class="container">
+    <div class="section-tag">Section 09</div>
+    <h2 class="section-title">International <em style="color:var(--terra-light)">Cultural Bridges</em></h2>
+    <div class="divider"></div>
+    <p class="section-intro">Folklore is humanity's first global language. Folkview builds bridges between Bangladeshi living heritage and the world's great folk traditions — discovering harmony, difference, and shared humanity.</p>
+
+    <div class="cultures-grid">
+      <div class="culture-card">
+        <div class="culture-flag">🇮🇳</div>
+        <h4>Indian Folk Culture</h4>
+        <p>Shared Bengali roots; Odissi connections; Rajasthani folk painting parallels with Bangladeshi Patachitra; tribal traditions across the border in West Bengal, Assam, Jharkhand.</p>
+        <span class="culture-tag">Shared Heritage</span>
+      </div>
+      <div class="culture-card">
+        <div class="culture-flag">🇱🇰</div>
+        <h4>Sri Lankan Folklore</h4>
+        <p>Kandyan dance traditions; Kolam mask performances parallel to Bangladeshi Mukha tradition; Buddhist folk narratives shared across the Bay of Bengal cultural sphere.</p>
+        <span class="culture-tag">Buddhist Heritage</span>
+      </div>
+      <div class="culture-card">
+        <div class="culture-flag">🇨🇳</div>
+        <h4>Chinese Folk Traditions</h4>
+        <p>Ancient trade routes via Bengal brought silk, tea, and folk exchange. Dragon boat traditions; paper-cutting art parallels with Alpona; folk opera traditions bridging opera-forms across cultures.</p>
+        <span class="culture-tag">Silk Road</span>
+      </div>
+      <div class="culture-card">
+        <div class="culture-flag">🇩🇪</div>
+        <h4>German Folklore</h4>
+        <p>Brothers Grimm established modern folklore methodology — directly influencing Bangladeshi collectors like Dinesh Chandra Sen. Comparative analysis of fairy tale structures (M–rchen) with Bangladeshi Rupkatha.</p>
+        <span class="culture-tag">Methodological</span>
+      </div>
+      <div class="culture-card">
+        <div class="culture-flag">🇫🇮</div>
+        <h4>Finnish Folklore</h4>
+        <p>The Kalevala epic tradition — compiled by Lönnrot from oral sources — is a model for Bangladeshi folklore compilation. Finnish folk music preservationism offers lessons for Bangladeshi Baul documentation.</p>
+        <span class="culture-tag">Oral Epic</span>
+      </div>
+      <div class="culture-card">
+        <div class="culture-flag">🇺🇸</div>
+        <h4>American Folk Culture</h4>
+        <p>The American Folk Revival (1950s-60s) provides a model for revitalizing endangered folk traditions through popular culture. Bangladeshi Baul-blues comparative studies as a research frontier.</p>
+        <span class="culture-tag">Revival Model</span>
+      </div>
+      <div class="culture-card">
+        <div class="culture-flag">🇯🇵</div>
+        <h4>Japanese Folk Traditions</h4>
+        <p>Japanese mingei (folk craft) movement — led by Yanagi Soetsu — offers a powerful model for elevating folk artisanship to cultural prestige. Directly applicable to Bangladesh's craft heritage situation.</p>
+        <span class="culture-tag">Craft Philosophy</span>
+      </div>
+      <div class="culture-card">
+        <div class="culture-flag">🇵🇰</div>
+        <h4>Pakistani & Persian Roots</h4>
+        <p>Shared Sufi heritage connecting Bangladeshi Baul-Fakir tradition to Pakistani Qawwali and Persian dervish music. Post-Partition folk continuities and divergences as research field.</p>
+        <span class="culture-tag">Sufi Heritage</span>
+      </div>
+    </div>
+
+    <div class="pop-culture-bar">
+      <h4>Folklore Meets Pop Culture — Bangladesh & Global</h4>
+      <div class="pop-items">
+        <div class="pop-item">🎸 Baul-influenced Bangladeshi Rock</div>
+        <div class="pop-item">🎨 Ricksha Art → Global Street Art</div>
+        <div class="pop-item">👗 Folk Motif → Fashion Week</div>
+        <div class="pop-item">🎥 Folk Tales → Cinema</div>
+        <div class="pop-item">💬 Folk Proverbs → Social Media</div>
+        <div class="pop-item">🎮 Folklore → Game Design</div>
+        <div class="pop-item">🍛 Folk Food → Global Cuisine</div>
+        <div class="pop-item">🌐 Diaspora Folk → World Music</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- --------------------------------------
+     10. PROJECTS
+-------------------------------------- -->
+<section class="projects-section" id="projects">
+  <div class="container">
+    <div class="section-tag">Section 10</div>
+    <h2 class="section-title">Our <em>Projects</em></h2>
+    <div class="divider"></div>
+    <p class="section-intro">Folkview's work unfolds across four interconnected domains — each project activating folklore as a resource for cultural survival, social development, and community empowerment.</p>
+
+    <div class="projects-grid">
+      <div class="project-card">
+        <div class="project-header" style="background:linear-gradient(135deg,var(--green-deep),var(--green-mid))">
+          <div class="project-num">Project 01</div>
+          <h4>Digital Preservation Initiative</h4>
+        </div>
+        <div class="project-body">
+          <p>Building Bangladesh's first comprehensive, open-access digital folklore archive — integrating high-resolution photos, audio recordings, documentary films, oral history transcripts, and GPS-referenced cultural data into a searchable, bilingual database.</p>
+          <div class="project-tags">
+            <span class="ptag">Digital Archive</span>
+            <span class="ptag">Open Access</span>
+            <span class="ptag">Bilingual</span>
+            <span class="ptag">GIS</span>
+          </div>
+          <div class="project-status">
+            <div class="status-dot"></div>
+            Active — Phase 1 Development
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header" style="background:linear-gradient(135deg,#8b2335,#c4622d)">
+          <div class="project-num">Project 02</div>
+          <h4>Bangladesh Heritage Map</h4>
+        </div>
+        <div class="project-body">
+          <p>An interactive, geo-referenced cultural visualization tool mapping archaeological sites, UNESCO heritage, regional folklore traditions, craft villages, and living community territories across all 64 districts of Bangladesh.</p>
+          <div class="project-tags">
+            <span class="ptag">Interactive Map</span>
+            <span class="ptag">UNESCO</span>
+            <span class="ptag">64 Districts</span>
+            <span class="ptag">Heritage</span>
+          </div>
+          <div class="project-status">
+            <div class="status-dot"></div>
+            Active — Flagship Initiative
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header" style="background:linear-gradient(135deg,#2d5a40,#c8961a)">
+          <div class="project-num">Project 03</div>
+          <h4>Social Development Research</h4>
+        </div>
+        <div class="project-body">
+          <p>Applied research connecting folklore to SDG implementation, public health communication, and community development — producing socio-economic profiles, policy recommendations, and applied folklore models for development practitioners.</p>
+          <div class="project-tags">
+            <span class="ptag">SDGs</span>
+            <span class="ptag">Public Health</span>
+            <span class="ptag">Policy</span>
+            <span class="ptag">Research</span>
+          </div>
+          <div class="project-status">
+            <div class="status-dot"></div>
+            Active — MSS Research
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header" style="background:linear-gradient(135deg,#19486A,#26BDE2)">
+          <div class="project-num">Project 04</div>
+          <h4>Rural Artisan Development</h4>
+        </div>
+        <div class="project-body">
+          <p>Economic empowerment initiative for folk artisan communities — digital skills training, fair-trade market connections, intellectual property awareness, and advocacy for policy changes protecting traditional craft knowledge and livelihoods.</p>
+          <div class="project-tags">
+            <span class="ptag">Artisans</span>
+            <span class="ptag">Fair Trade</span>
+            <span class="ptag">IP Rights</span>
+            <span class="ptag">Advocacy</span>
+          </div>
+          <div class="project-status">
+            <div class="status-dot"></div>
+            Planning Phase
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- --------------------------------------
+     HERITAGE MAP (FEATURED)
+-------------------------------------- -->
+<section class="hm" id="heritagemap">
+  <div class="hm-h">
+    <div class="section-tag">Featured <i class="fas fa-star"></i></div>
+    <h2 class="section-title">Bangladesh <em style="color:var(--terra-light)">Heritage Map</em></h2>
+    <p class="section-intro">An interactive map of Bangladesh's national boundary — filter by category, search a site, or tap a marker to discover living heritage, archaeological sites and folk communities.</p>
+    <div class="hm-f" id="hm-f"></div>
+    <input id="hm-q" type="search" placeholder="Search sites, e.g. Baul, Sylhet…">
+  </div>
+  <div class="hm-w"><div id="hm-list"></div><div id="hmap"></div></div>
+</section>
+
+
+<!-- --------------------------------------
+     TEAM
+-------------------------------------- -->
+<section class="team-section" id="team">
+  <div class="container">
+    <div class="section-tag">The Team</div>
+    <h2 class="section-title">Folkview <em>Team</em></h2>
+    <div class="divider"></div>
+    <p class="section-intro">Folkview is a collaborative initiative. Every team member carries responsibility, expertise, and dedication to Bangladesh's living heritage. Together, we are more than a research team — we are cultural custodians.</p>
+
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="team-card-header" style="background:linear-gradient(135deg,var(--green-deep),var(--green-mid))">
+          <div class="team-avatar" style="background:rgba(200,150,26,0.2);border-color:var(--gold)">🎓</div>
+          <h4 style="color:var(--gold-light)">Principal Researcher</h4>
+          <div class="team-role" style="color:var(--terra-light)">Chief Investigator & Director</div>
+        </div>
+        <div class="team-duties">
+          <ul>
+            <li>Overall research design and academic oversight</li>
+            <li>Thesis writing and supervisor liaison</li>
+            <li>Platform vision and strategic direction</li>
+            <li>International partnership development</li>
+            <li>Represents Folkview in academic forums</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="team-card">
+        <div class="team-card-header" style="background:linear-gradient(135deg,#8b2335,#c4622d)">
+          <div class="team-avatar" style="background:rgba(255,255,255,0.15);border-color:rgba(255,255,255,0.3)">🧭</div>
+          <h4 style="color:white">Field Research Coordinator</h4>
+          <div class="team-role" style="color:rgba(255,255,255,0.8)">Ethnographer & Fieldwork Lead</div>
+        </div>
+        <div class="team-duties">
+          <ul>
+            <li>Organizes and leads ethnographic fieldwork</li>
+            <li>Community entry and trust-building</li>
+            <li>Manages field team logistics and safety</li>
+            <li>Ensures ethical research protocols</li>
+            <li>Primary data collection oversight</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="team-card">
+        <div class="team-card-header" style="background:linear-gradient(135deg,#19486A,#26BDE2)">
+          <div class="team-avatar" style="background:rgba(255,255,255,0.15);border-color:rgba(255,255,255,0.3)">💻</div>
+          <h4 style="color:white">Digital Heritage Officer</h4>
+          <div class="team-role" style="color:rgba(255,255,255,0.8)">Platform & GIS Developer</div>
+        </div>
+        <div class="team-duties">
+          <ul>
+            <li>Folkview website development & maintenance</li>
+            <li>Bangladesh Heritage Map GIS implementation</li>
+            <li>Digital archive database management</li>
+            <li>Multimedia content uploading & curation</li>
+            <li>Technical documentation</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="team-card">
+        <div class="team-card-header" style="background:linear-gradient(135deg,#2d5a40,#c8961a)">
+          <div class="team-avatar" style="background:rgba(255,255,255,0.15);border-color:rgba(255,255,255,0.3)">🎥</div>
+          <h4 style="color:white">Documentation Specialist</h4>
+          <div class="team-role" style="color:rgba(255,255,255,0.8)">Audiovisual & Photo Lead</div>
+        </div>
+        <div class="team-duties">
+          <ul>
+            <li>Photography and videography in field</li>
+            <li>Documentary film production</li>
+            <li>Audio recording of oral traditions</li>
+            <li>Post-production editing and archiving</li>
+            <li>Visual storytelling for public outreach</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="team-card">
+        <div class="team-card-header" style="background:linear-gradient(135deg,#c8961a,#8b2335)">
+          <div class="team-avatar" style="background:rgba(255,255,255,0.15);border-color:rgba(255,255,255,0.3)">📊</div>
+          <h4 style="color:white">Community Research Analyst</h4>
+          <div class="team-role" style="color:rgba(255,255,255,0.8)">Socio-Economic Researcher</div>
+        </div>
+        <div class="team-duties">
+          <ul>
+            <li>Conducts socio-economic surveys</li>
+            <li>Focus group discussion facilitation</li>
+            <li>Community profile data analysis</li>
+            <li>SDG impact mapping and reporting</li>
+            <li>Marginalization pattern documentation</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="team-card">
+        <div class="team-card-header" style="background:linear-gradient(135deg,#4a1942,#9b2c6e)">
+          <div class="team-avatar" style="background:rgba(255,255,255,0.15);border-color:rgba(255,255,255,0.3)">📣</div>
+          <h4 style="color:white">Communications & Outreach</h4>
+          <div class="team-role" style="color:rgba(255,255,255,0.8)">Media & Public Engagement</div>
+        </div>
+        <div class="team-duties">
+          <ul>
+            <li>Social media management (বাংলা ও English)</li>
+            <li>Blog writing and article publishing</li>
+            <li>Press relations and media outreach</li>
+            <li>Event coordination and public programs</li>
+            <li>Community newsletter and updates</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="team-card">
+        <div class="team-card-header" style="background:linear-gradient(135deg,#1a3a2a,#4a7c5f)">
+          <div class="team-avatar" style="background:rgba(200,150,26,0.2);border-color:var(--gold)">🩺</div>
+          <h4 style="color:var(--gold-light)">Folk Health Researcher</h4>
+          <div class="team-role" style="color:var(--terra-light)">Public Health & Folk Medicine</div>
+        </div>
+        <div class="team-duties">
+          <ul>
+            <li>Documents folk medicine practices</li>
+            <li>Interviews Kaviraj, Ojha, and Dai practitioners</li>
+            <li>Health awareness communication design</li>
+            <li>Ethical documentation of health knowledge</li>
+            <li>Connects folk health to SDG 3 outcomes</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="team-card">
+        <div class="team-card-header" style="background:linear-gradient(135deg,#8b2335,#1a3a2a)">
+          <div class="team-avatar" style="background:rgba(255,255,255,0.15);border-color:rgba(255,255,255,0.3)">🤝</div>
+          <h4 style="color:white">Artisan Liaison Officer</h4>
+          <div class="team-role" style="color:rgba(255,255,255,0.8)">Folk Craft & Community Link</div>
+        </div>
+        <div class="team-duties">
+          <ul>
+            <li>Direct relationship with artisan communities</li>
+            <li>Craft documentation and skill recording</li>
+            <li>Fair-trade and market linkage facilitation</li>
+            <li>Advocacy for artisan rights and IP</li>
+            <li>Women artisan empowerment programs</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div style="background:var(--green-deep);color:var(--cream);padding:2.5rem;margin-top:3rem;text-align:center;">
+      <p style="font-family:'Noto Serif Bengali',serif;font-size:1.1rem;color:var(--gold-light);margin-bottom:0.5rem;">একসাথে পথচলা, একসাথে গড়ে তোলা — বাংলার লোকঐতিহ্যের জন্য</p>
+      <p style="font-size:1rem;color:rgba(247,237,224,0.8);line-height:1.7;max-width:600px;margin:0 auto;">Folkview is a collective endeavor. Each team member brings distinct expertise — together we create something none of us could build alone. Interested in joining the team? Reach out through the platform.</p>
+    </div>
+  </div>
+</section>
+
+<!-- --------------------------------------
+     FOOTER
+-------------------------------------- -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo">Folk<span>view</span></div>
+      <p class="footer-desc">A digital heritage initiative of the Department of Folklore & Social Development Studies, University of Rajshahi. Documenting Bangladesh's living traditions for the world.</p>
+      <p class="footer-desc bn" style="font-family:'Noto Serif Bengali',serif;">বাংলাদেশের লোকসংস্কৃতি ও ঐতিহ্য সংরক্ষণে আমাদের সাথে থাকুন।</p>
+      <a href="https://folkview.com" target="_blank" class="btn-primary" style="font-size:0.75rem;padding:0.5rem 1.2rem;margin-top:1rem;display:inline-block;">folkview.com ↗</a>
+    </div>
+    <div class="footer-col">
+      <h5>Sections</h5>
+      <ul>
+        <li><a href="#folklore">Folklore</a></li>
+        <li><a href="#archive">Digital Archive</a></li>
+        <li><a href="#community">Folk Community</a></li>
+        <li><a href="#sdgs">SDGs</a></li>
+        <li><a href="#health">Public Health</a></li>
+        <li><a href="#women">Women</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>More</h5>
+      <ul>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#social">Research</a></li>
+        <li><a href="#artisans">Artisans</a></li>
+        <li><a href="#international">Global</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#heritagemap">Heritage Map</a></li>
+        <li><a href="#team">Team</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Contact</h5>
+      <ul>
+        <li><a href="#">folkview.com</a></li>
+        <li><a href="#">Dept. of Folklore</a></li>
+        <li><a href="#">University of Rajshahi</a></li>
+        <li><a href="#">Rajshahi 6205, Bangladesh</a></li>
+        <li><a href="#">Collaborate</a></li>
+        <li><a href="#">Fund the Project</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Folkview · Md. Ahsan Hanif · MSS Research · University of Rajshahi</p>
+    <p class="dept">Dept. of Folklore & Social Development Studies · Session 2019–20</p>
+  </div>
+</footer>
+
+<!-- --------------------------------------
+     JAVASCRIPT
+-------------------------------------- -->
+<script>
+// --- Tab System ---
+function showTab(btn, id) {
+  const panels = document.querySelectorAll('.tab-panel');
+  const btns = document.querySelectorAll('.tab-btn');
+  panels.forEach(p => p.classList.remove('active'));
+  btns.forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+
+// --- Districts Data ---
+const districts = {
+  dhaka: ['Dhaka','Gazipur','Narayanganj','Munshiganj','Manikganj','Narsingdi','Tangail','Kishoreganj','Mymensingh','Jamalpur','Netrokona','Sherpur','Faridpur','Rajbari','Madaripur','Gopalganj','Shariatpur'],
+  chittagong: ['Chattogram','Cox\'s Bazar','Rangamati','Bandarban','Khagrachhari','Feni','Noakhali','Lakshmipur','Comilla','Chandpur','Brahmanbaria'],
+  rajshahi: ['Rajshahi','Natore','Naogaon','Chapainawabganj','Bogura','Joypurhat','Sirajganj','Pabna'],
+  khulna: ['Khulna','Satkhira','Bagerhat','Jessore','Magura','Jhenaidah','Narail','Kushtia','Chuadanga','Meherpur'],
+  barisal: ['Barishal','Patuakhali','Bhola','Pirojpur','Jhalokati','Barguna'],
+  sylhet: ['Sylhet','Moulvibazar','Habiganj','Sunamganj'],
+  rangpur: ['Rangpur','Dinajpur','Gaibandha','Lalmonirhat','Nilphamari','Panchagarh','Thakurgaon','Kurigram'],
+  mymensingh: ['Mymensingh','Jamalpur','Netrokona','Sherpur']
+};
+
+function populateDistricts(filter) {
+  const grid = document.getElementById('districts-grid');
+  grid.innerHTML = '';
+  let list = [];
+  if (filter === 'all') {
+    Object.values(districts).forEach(arr => list = list.concat(arr));
+    list = [...new Set(list)];
+  } else {
+    list = districts[filter] || [];
+  }
+  list.forEach(d => {
+    const chip = document.createElement('div');
+    chip.className = 'district-chip';
+    chip.textContent = d;
+    grid.appendChild(chip);
+  });
+}
+
+function filterDistricts(btn, div) {
+  document.querySelectorAll('.div-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  populateDistricts(div);
+}
+
+populateDistricts('all');
+
+// --- Scroll Animations ---
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.folk-card, .archive-item, .sdg-card, .project-card, .team-card, .barrier-card, .artifact-card, .culture-card, .comm-type').forEach(el => {
+  el.classList.add('fade-in-up');
+  observer.observe(el);
+});
+
+// --- Nav active state ---
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => {
+    const st = s.offsetTop - 80;
+    if (window.scrollY >= st) current = s.id;
+  });
+  navLinks.forEach(a => {
+    a.style.color = a.getAttribute('href') === '#'+current ? 'var(--gold-light)' : '';
+  });
+});
+</script>
+
+<button id="totop" aria-label="Back to top"><i class="fas fa-chevron-up"></i></button>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+(function(){
+var $=function(s){return document.querySelector(s)},$$=function(s){return [].slice.call(document.querySelectorAll(s))};
+/* nav */
+var dd=$('#dd'),btn=$('#dd-btn');
+btn.onclick=function(e){e.stopPropagation();var o=dd.classList.toggle('open');btn.setAttribute('aria-expanded',o)};
+document.addEventListener('click',function(e){if(!dd.contains(e.target)){dd.classList.remove('open');btn.setAttribute('aria-expanded',false)}});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'){dd.classList.remove('open')}});
+if(matchMedia('(hover:hover) and (min-width:901px)').matches){dd.onmouseenter=function(){dd.classList.add('open')};dd.onmouseleave=function(){dd.classList.remove('open')}}
+$('#nvb').onclick=function(){$('#nv').classList.toggle('open')};
+$$('#nv a').forEach(function(a){a.addEventListener('click',function(){$('#nv').classList.remove('open');dd.classList.remove('open')})});
+var secs=$$('section[id]'),nl=$$('#nv>li>a'),pl=$$('#dd-panel a');
+function spy(){
+  var y=scrollY,h=document.documentElement.scrollHeight-innerHeight,cur='hero';
+  $('#prog').style.width=(y/h*100)+'%';$('#totop').classList.toggle('v',y>500);
+  secs.forEach(function(s){if(y+130>=s.offsetTop)cur=s.id});
+  nl.forEach(function(a){a.classList.toggle('on',a.getAttribute('href')=='#'+cur)});
+  var inPanel=false;pl.forEach(function(a){var on=a.getAttribute('href')=='#'+cur;a.classList.toggle('on',on);if(on)inPanel=true});
+  btn.classList.toggle('on',inPanel);
+}
+addEventListener('scroll',spy);spy();
+$('#totop').onclick=function(){scrollTo({top:0,behavior:'smooth'})};
+/* map */
+var CAT={unesco:['UNESCO','#e8b830'],arch:['Archaeology','#e07a45'],folk:['Folk Culture','#4fd1a5'],comm:['Communities','#7aa2ff']};
+var S=[
+['Sundarbans',21.9497,89.1833,'unesco','UNESCO World Heritage. Mangrove forest folklore and Bonobibi traditions.'],
+['Historic Mosque City of Bagerhat',22.6741,89.7429,'unesco','UNESCO World Heritage. Sixty Dome Mosque and Khan Jahan Ali monuments.'],
+['Paharpur (Somapura Mahavihara)',25.0308,88.9769,'unesco','UNESCO World Heritage. Ancient Buddhist monastery.'],
+['Baul Tradition, Kushtia',23.9013,89.1206,'unesco','Lalon Shah\'s shrine. Baul songs are on UNESCO\'s Intangible Heritage list.'],
+['Jamdani Weaving, Narayanganj',23.6238,90.4999,'unesco','UNESCO Intangible Heritage. Fine muslin weaving.'],
+['Mahasthangarh',24.9614,89.3428,'arch','One of the oldest archaeological sites in Bangladesh (Bogura).'],
+['Mainamati, Cumilla',23.4333,91.1,'arch','Buddhist ruins including Shalban Vihara.'],
+['Puthia Temple Complex',24.3814,88.8369,'arch','Rajshahi\'s cluster of Hindu temples and terracotta art.'],
+['Kantajew Temple, Dinajpur',25.7667,88.6667,'arch','18th-century terracotta temple.'],
+['Lalbagh Fort, Dhaka',23.7189,90.3881,'arch','Mughal-era fort in Old Dhaka.'],
+['Rickshaw Art, Dhaka',23.7340,90.3930,'folk','Hand-painted rickshaw art, a living urban folk tradition.'],
+['Nakshi Kantha, Jamalpur',24.9375,89.9372,'folk','Traditional embroidered quilts, a women-led craft.'],
+['Chittagong Hill Tracts',22.6500,92.1700,'comm','Home to 11+ ethnic communities with distinct folklore.'],
+['Sylhet Tea Gardens',24.8949,91.8687,'comm','Folk songs of tea-garden workers and Haor wetland culture.'],
+['Tanguar Haor',25.1667,91.0,'comm','Wetland communities, fishing lore and seasonal festivals.'],
+['Cox\'s Bazar (Rakhine culture)',21.4272,92.0058,'comm','Coastal communities, Rakhine crafts and festivals.']
+];
+var BGD={"type":"MultiPolygon","coordinates":[[[[92.576,21.978],[92.576,21.734],[92.603,21.42],[92.643,21.298],[92.591,21.249],[92.552,21.281],[92.499,21.367],[92.4,21.371],[92.374,21.402],[92.355,21.452],[92.253,21.42],[92.212,21.355],[92.178,21.28],[92.178,21.191],[92.188,21.144],[92.224,21.093],[92.257,20.981],[92.301,20.862],[92.326,20.781],[92.334,20.746],[92.314,20.749],[92.278,20.814],[92.186,21.006],[92.108,21.09],[92.045,21.171],[92.05,21.28],[91.98,21.404],[91.953,21.442],[91.958,21.455],[91.963,21.452],[91.999,21.499],[91.995,21.523],[91.999,21.573],[92.018,21.616],[92.032,21.65],[92.029,21.675],[92.029,21.696],[92.024,21.705],[92.025,21.699],[91.984,21.65],[91.984,21.694],[91.972,21.688],[91.95,21.716],[91.975,21.746],[91.967,21.755],[91.99,21.788],[91.924,21.785],[91.901,21.813],[91.922,21.853],[91.95,21.877],[91.93,21.879],[91.91,21.875],[91.898,21.945],[91.881,22.007],[91.864,22.14],[91.853,22.149],[91.84,22.117],[91.813,22.18],[91.826,22.23],[91.838,22.263],[91.812,22.281],[91.852,22.325],[91.908,22.425],[91.886,22.41],[91.87,22.358],[91.826,22.329],[91.791,22.302],[91.817,22.274],[91.809,22.236],[91.754,22.375],[91.548,22.7],[91.485,22.746],[91.462,22.762],[91.458,22.797],[91.49,22.881],[91.48,22.886],[91.43,22.816],[91.415,22.754],[91.368,22.774],[91.367,22.762],[91.343,22.739],[91.325,22.726],[91.317,22.697],[91.283,22.693],[91.245,22.698],[91.243,22.72],[91.182,22.726],[91.199,22.699],[91.169,22.685],[91.264,22.641],[91.242,22.575],[91.177,22.536],[91.07,22.572],[91.038,22.644],[91.004,22.679],[91.04,22.608],[90.985,22.574],[90.936,22.6],[90.899,22.636],[90.865,22.687],[90.82,22.726],[90.795,22.741],[90.771,22.785],[90.75,22.857],[90.726,22.906],[90.64,23.038],[90.627,23.087],[90.646,23.211],[90.661,23.268],[90.65,23.314],[90.655,23.323],[90.628,23.322],[90.599,23.391],[90.633,23.487],[90.716,23.535],[90.696,23.555],[90.684,23.542],[90.678,23.517],[90.622,23.5],[90.588,23.534],[90.633,23.597],[90.625,23.598],[90.612,23.606],[90.564,23.576],[90.532,23.562],[90.476,23.583],[90.515,23.551],[90.577,23.539],[90.568,23.433],[90.552,23.385],[90.284,23.446],[90.259,23.445],[90.413,23.348],[90.46,23.32],[90.569,23.295],[90.611,23.231],[90.603,23.211],[90.603,23.141],[90.566,23.076],[90.556,23.097],[90.559,23.111],[90.523,23.08],[90.454,23.072],[90.454,23.028],[90.507,22.942],[90.51,22.918],[90.521,22.916],[90.54,22.897],[90.505,22.882],[90.457,22.862],[90.408,22.795],[90.406,22.763],[90.387,22.751],[90.445,22.752],[90.49,22.72],[90.509,22.646],[90.5,22.592],[90.459,22.579],[90.442,22.494],[90.458,22.515],[90.46,22.551],[90.487,22.584],[90.56,22.562],[90.607,22.466],[90.586,22.451],[90.618,22.377],[90.582,22.238],[90.512,22.185],[90.494,22.154],[90.45,22.081],[90.408,22.086],[90.393,22.127],[90.41,22.227],[90.411,22.284],[90.389,22.223],[90.406,22.2],[90.413,22.178],[90.399,22.162],[90.393,22.143],[90.38,22.144],[90.37,22.09],[90.335,22.042],[90.309,21.984],[90.291,21.89],[90.218,21.813],[90.164,21.804],[90.093,21.83],[90.112,21.856],[90.121,21.889],[90.122,21.915],[90.116,21.919],[90.079,21.867],[90.049,21.851],[90.031,21.889],[90.054,21.973],[90.086,22.0],[90.096,22.04],[90.152,22.095],[90.173,22.117],[90.195,22.11],[90.239,22.172],[90.206,22.133],[90.148,22.111],[90.074,22.019],[90.052,21.989],[89.996,22.0],[90.011,22.041],[90.035,22.06],[90.039,22.116],[90.063,22.146],[90.053,22.155],[90.015,22.078],[89.985,21.999],[89.95,21.981],[89.926,22.027],[89.912,22.136],[89.898,22.212],[89.877,22.253],[89.88,22.288],[89.988,22.458],[90.01,22.49],[89.947,22.44],[89.92,22.392],[89.875,22.398],[89.88,22.342],[89.861,22.211],[89.871,22.092],[89.832,22.072],[89.797,22.069],[89.848,22.034],[89.846,21.983],[89.864,21.943],[89.887,21.9],[89.851,21.878],[89.818,21.845],[89.786,21.829],[89.766,21.847],[89.726,21.829],[89.673,21.84],[89.653,21.868],[89.661,21.906],[89.63,21.851],[89.692,21.795],[89.668,21.751],[89.62,21.764],[89.604,21.728],[89.566,21.713],[89.527,21.813],[89.557,21.869],[89.563,21.973],[89.601,22.091],[89.594,22.155],[89.567,22.203],[89.607,22.278],[89.626,22.336],[89.592,22.288],[89.586,22.245],[89.549,22.205],[89.576,22.145],[89.577,22.101],[89.556,22.008],[89.525,22.0],[89.536,22.076],[89.489,22.209],[89.483,22.295],[89.476,22.103],[89.489,22.13],[89.498,22.125],[89.513,22.092],[89.509,22.041],[89.489,22.031],[89.497,22.014],[89.52,21.969],[89.502,21.898],[89.465,21.859],[89.469,21.804],[89.443,21.747],[89.37,21.743],[89.366,21.829],[89.387,21.901],[89.36,21.972],[89.349,21.944],[89.36,21.902],[89.329,21.865],[89.301,21.809],[89.284,21.822],[89.291,21.733],[89.298,21.678],[89.249,21.646],[89.204,21.673],[89.221,21.709],[89.188,21.812],[89.165,21.8],[89.141,21.79],[89.105,21.816],[89.08,21.935],[89.084,22.021],[89.063,22.111],[89.078,22.151],[89.062,22.212],[89.024,22.295],[88.99,22.387],[89.001,22.42],[88.98,22.491],[88.928,22.548],[88.952,22.612],[88.926,22.681],[88.908,22.741],[88.937,22.782],[88.947,22.835],[88.905,22.866],[88.862,22.942],[88.839,22.995],[88.865,23.1],[88.955,23.184],[88.954,23.207],[88.91,23.212],[88.81,23.236],[88.786,23.222],[88.697,23.252],[88.695,23.313],[88.77,23.489],[88.732,23.473],[88.694,23.5],[88.624,23.574],[88.582,23.588],[88.561,23.609],[88.561,23.632],[88.54,23.65],[88.553,23.765],[88.572,23.807],[88.575,23.837],[88.594,23.867],[88.653,23.87],[88.714,23.925],[88.708,23.984],[88.725,24.029],[88.698,24.056],[88.675,24.092],[88.678,24.145],[88.694,24.175],[88.732,24.19],[88.75,24.223],[88.743,24.248],[88.682,24.334],[88.635,24.294],[88.498,24.311],[88.139,24.495],[88.099,24.522],[88.085,24.542],[88.067,24.614],[88.022,24.646],[88.048,24.711],[88.077,24.761],[88.088,24.796],[88.117,24.819],[88.138,24.863],[88.115,24.912],[88.183,24.947],[88.233,24.918],[88.255,24.88],[88.323,24.875],[88.388,24.969],[88.426,25.051],[88.441,25.19],[88.523,25.18],[88.559,25.171],[88.59,25.19],[88.665,25.187],[88.792,25.167],[88.817,25.197],[88.899,25.169],[88.928,25.193],[88.929,25.229],[88.982,25.275],[88.975,25.303],[88.886,25.319],[88.849,25.327],[88.814,25.37],[88.8,25.396],[88.815,25.459],[88.781,25.495],[88.743,25.495],[88.714,25.493],[88.687,25.474],[88.645,25.467],[88.551,25.496],[88.513,25.524],[88.438,25.58],[88.393,25.681],[88.227,25.804],[88.146,25.776],[88.108,25.806],[88.088,25.84],[88.074,25.908],[88.088,25.923],[88.151,26.031],[88.151,26.067],[88.14,26.085],[88.156,26.128],[88.206,26.166],[88.23,26.184],[88.326,26.216],[88.337,26.282],[88.414,26.34],[88.432,26.362],[88.458,26.353],[88.498,26.353],[88.461,26.454],[88.354,26.485],[88.34,26.454],[88.315,26.465],[88.332,26.515],[88.373,26.612],[88.396,26.6],[88.411,26.545],[88.475,26.515],[88.507,26.488],[88.558,26.466],[88.598,26.451],[88.622,26.425],[88.652,26.407],[88.661,26.389],[88.673,26.361],[88.712,26.328],[88.653,26.283],[88.748,26.293],[88.798,26.248],[88.841,26.232],[88.903,26.273],[89.019,26.234],[89.024,26.269],[89.008,26.297],[88.982,26.292],[88.941,26.34],[88.891,26.386],[88.925,26.432],[88.959,26.429],[89.002,26.397],[89.044,26.381],[89.054,26.354],[89.096,26.335],[89.095,26.31],[89.069,26.287],[89.103,26.225],[89.132,26.134],[89.223,26.087],[89.273,26.043],[89.335,25.999],[89.38,26.015],[89.411,25.993],[89.426,25.995],[89.486,25.999],[89.509,25.973],[89.542,25.96],[89.551,25.995],[89.611,26.072],[89.577,26.083],[89.578,26.107],[89.586,26.123],[89.573,26.161],[89.594,26.17],[89.608,26.181],[89.635,26.226],[89.658,26.187],[89.658,26.159],[89.698,26.155],[89.724,26.131],[89.75,26.084],[89.75,26.042],[89.784,25.995],[89.802,25.989],[89.809,25.995],[89.814,25.996],[89.826,25.966],[89.811,25.939],[89.83,25.908],[89.802,25.725],[89.825,25.564],[89.801,25.413],[89.799,25.34],[89.835,25.282],[90.13,25.212],[90.4,25.149],[90.623,25.171],[90.671,25.159],[90.722,25.157],[90.754,25.168],[90.794,25.145],[90.943,25.157],[91.191,25.189],[91.236,25.202],[91.471,25.134],[91.512,25.142],[91.549,25.161],[91.58,25.141],[91.639,25.124],[91.677,25.153],[91.711,25.145],[91.73,25.167],[91.901,25.178],[92.002,25.183],[92.093,25.165],[92.116,25.139],[92.146,25.132],[92.173,25.132],[92.208,25.098],[92.252,25.081],[92.328,25.048],[92.385,25.005],[92.387,24.995],[92.412,24.987],[92.412,24.984],[92.454,24.958],[92.458,24.953],[92.474,24.937],[92.491,24.912],[92.492,24.884],[92.381,24.837],[92.364,24.841],[92.358,24.854],[92.29,24.891],[92.218,24.875],[92.235,24.825],[92.236,24.793],[92.173,24.608],[92.153,24.545],[92.123,24.525],[92.111,24.434],[92.063,24.371],[91.949,24.364],[91.953,24.323],[91.9,24.338],[91.906,24.261],[91.865,24.151],[91.811,24.192],[91.797,24.222],[91.726,24.202],[91.721,24.149],[91.666,24.156],[91.629,24.215],[91.606,24.119],[91.559,24.09],[91.405,24.103],[91.349,24.036],[91.316,23.989],[91.292,23.995],[91.25,23.964],[91.213,23.881],[91.225,23.826],[91.177,23.747],[91.132,23.721],[91.169,23.685],[91.152,23.655],[91.141,23.612],[91.186,23.512],[91.221,23.478],[91.234,23.436],[91.271,23.365],[91.283,23.348],[91.268,23.322],[91.301,23.142],[91.371,23.063],[91.356,23.224],[91.394,23.263],[91.437,23.215],[91.44,23.224],[91.445,23.203],[91.464,23.184],[91.498,23.07],[91.516,23.039],[91.524,22.995],[91.563,22.975],[91.583,22.948],[91.608,22.96],[91.626,22.982],[91.647,22.977],[91.695,22.988],[91.731,23.017],[91.756,23.052],[91.761,23.065],[91.776,23.065],[91.792,23.101],[91.749,23.232],[91.792,23.368],[91.889,23.436],[91.941,23.495],[91.914,23.688],[91.937,23.724],[92.004,23.647],[92.06,23.659],[92.151,23.732],[92.194,23.648],[92.239,23.717],[92.262,23.685],[92.291,23.495],[92.307,23.424],[92.327,23.396],[92.332,23.369],[92.35,23.345],[92.352,23.299],[92.351,23.261],[92.328,23.171],[92.36,22.927],[92.426,22.871],[92.454,22.748],[92.496,22.696],[92.505,22.544],[92.577,22.169],[92.549,22.138],[92.573,21.995]]],[[[91.936,21.76],[91.984,21.609],[91.97,21.524],[91.914,21.509],[91.899,21.494],[91.877,21.481],[91.858,21.513],[91.871,21.548],[91.869,21.622],[91.863,21.746],[91.898,21.743],[91.891,21.699],[91.91,21.727],[91.919,21.777],[91.936,21.76]]],[[[90.791,22.495],[90.835,22.34],[90.775,22.076],[90.75,22.076],[90.692,22.007],[90.658,21.993],[90.651,22.045],[90.626,22.027],[90.608,22.072],[90.622,22.145],[90.678,22.283],[90.688,22.378],[90.682,22.439],[90.659,22.524],[90.575,22.599],[90.556,22.675],[90.596,22.775],[90.651,22.787],[90.684,22.694],[90.731,22.621],[90.767,22.518]]],[[[90.645,22.849],[90.662,22.805],[90.562,22.789],[90.53,22.744],[90.511,22.723],[90.493,22.753],[90.464,22.779],[90.463,22.834],[90.487,22.87],[90.544,22.881],[90.607,22.877]]]]};
+var map=L.map('hmap',{minZoom:6,maxBounds:[[19.5,86.5],[28,94.5]]});
+L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{attribution:'&copy; OpenStreetMap &copy; CARTO',subdomains:'abcd',maxZoom:18}).addTo(map);
+var holes=BGD.coordinates.map(function(p){return p[0].map(function(c){return [c[1],c[0]]})});
+L.polygon([[[-90,-180],[-90,180],[90,180],[90,-180]]].concat(holes),{stroke:false,fillColor:'#0b0805',fillOpacity:.72,interactive:false}).addTo(map);
+var border=L.geoJSON(BGD,{style:{color:'#e8b830',weight:2.5,fillColor:'#2d5a40',fillOpacity:.18}}).addTo(map);
+map.fitBounds(border.getBounds(),{padding:[10,10]});
+var mk=S.map(function(s){
+  var ic=L.divIcon({className:'',html:'<div class="hm-dot" style="background:'+CAT[s[3]][1]+';color:'+CAT[s[3]][1]+'"></div>',iconSize:[16,16],iconAnchor:[8,8]});
+  return L.marker([s[1],s[2]],{icon:ic}).bindPopup('<h4>'+s[0]+'</h4><small style="color:'+CAT[s[3]][1]+'">'+CAT[s[3]][0]+'</small><p>'+s[4]+'</p>');
+});
+var cat='all';
+function render(){
+  var q=$('#hm-q').value.toLowerCase(),h='';
+  S.forEach(function(s,i){
+    var ok=(cat=='all'||s[3]==cat)&&(s[0]+' '+s[4]).toLowerCase().indexOf(q)>-1;
+    if(ok){mk[i].addTo(map);h+='<div class="hm-it" data-i="'+i+'"><b>'+s[0]+'</b><small style="color:'+CAT[s[3]][1]+'">'+CAT[s[3]][0]+'</small></div>'}else map.removeLayer(mk[i]);
+  });
+  $('#hm-list').innerHTML=h||'<div class="hm-it"><small style="color:#aaa">No sites found</small></div>';
+}
+var fh='<button class="on" data-c="all">All</button>';for(var k in CAT)fh+='<button data-c="'+k+'">'+CAT[k][0]+'</button>';
+$('#hm-f').innerHTML=fh;
+$('#hm-f').onclick=function(e){var b=e.target.closest('button');if(!b)return;$$('#hm-f button').forEach(function(x){x.classList.remove('on')});b.classList.add('on');cat=b.dataset.c;render()};
+$('#hm-q').oninput=render;
+$('#hm-list').onclick=function(e){var t=e.target.closest('.hm-it');if(!t||!t.dataset.i)return;var i=+t.dataset.i;$$('.hm-it').forEach(function(x){x.classList.remove('on')});t.classList.add('on');map.flyTo([S[i][1],S[i][2]],9,{duration:1});mk[i].openPopup()};
+render();
+})();
+</script>
+
+</body>
+</html>
